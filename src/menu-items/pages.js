@@ -24,10 +24,19 @@ const pages = {
         {
           id: 'login3',
           title: 'Estimation 1',
-          type: 'item',
-          url: '/pages/login/login3',
-          target: true
-        },
+          type: 'collapse',
+          
+          children: [
+            {
+              id: 'v1',
+              title: 'Version 1',
+              type: 'item',
+              url: '/v1',
+              
+            }
+          ]
+        }
+        ,
         {
           id: 'register3',
           title: 'Estimation 2',
