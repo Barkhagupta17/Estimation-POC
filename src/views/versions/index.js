@@ -15,8 +15,8 @@ const Version = () => {
         setValue(newValue);
     };
     return (
-        <MainCard title={
-            <Box sx={{ width: '100%' }}>
+        <MainCard sx={{overflow :"hidden"}}  title={
+            <Box sx={{ width: '100%', padding:'20px' }}>
                 <TabContext value={value}>
                     <Tabs
                         value={value}
@@ -31,7 +31,7 @@ const Version = () => {
                         <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab>
                     </Tabs>
 
-                    <TabPanel value="Client-Custom-Change"><ClientCustomChange /></TabPanel>
+                    <TabPanel className='client table tab' value="Client-Custom-Change"><ClientCustomChange /></TabPanel>
                     <TabPanel value="Team-&-Cost">Item Two</TabPanel>
                     <TabPanel value="Annual-Support-Cost">Item Three</TabPanel>
                     <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel>
