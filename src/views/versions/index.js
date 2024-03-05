@@ -4,8 +4,12 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
+import FullFeaturedCrudGrid from './Grid';
+import BasicRowEditingGrid from './Teamandcost'
+
 // project imports
-import MainCard from 'ui-component/cards/MainCard';
+import { Card } from '@mui/material';
+// import MainCard from 'ui-component/cards/MainCard';
 import ClientCustomChange from './ClientCustomChange';
 
 const Version = () => {
@@ -15,8 +19,9 @@ const Version = () => {
         setValue(newValue);
     };
     return (
-        <MainCard sx={{overflow :"hidden"}}  title={
-            <Box sx={{ width: '100%', padding:'20px' }}>
+        
+            <Card>
+                <Box sx={{ width: '100%', padding:'20px' }}>
                 <TabContext value={value}>
                     <Tabs
                         value={value}
@@ -31,15 +36,16 @@ const Version = () => {
                         <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab>
                     </Tabs>
 
-                    <TabPanel className='client table tab' value="Client-Custom-Change"><ClientCustomChange /></TabPanel>
-                    <TabPanel value="Team-&-Cost">Item Two</TabPanel>
-                    <TabPanel value="Annual-Support-Cost">Item Three</TabPanel>
+                    <TabPanel value="Client-Custom-Change"><ClientCustomChange /></TabPanel>
+                    <TabPanel value="Team-&-Cost"><BasicRowEditingGrid /></TabPanel>
+                    <TabPanel value="Annual-Support-Cost"><FullFeaturedCrudGrid /></TabPanel>
                     <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel>
                 </TabContext>
             </Box>
-        }>
+            </Card>
+       
 
-        </MainCard>
+        
     )
 }
 
