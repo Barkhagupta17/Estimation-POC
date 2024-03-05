@@ -1,13 +1,13 @@
 import React from "react";
 
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
-import "./Table.css";
+import "./Clienttable.css";
 
 export const ClientTable = ({ rows, deleteRow, editRow }) => {
   return (
   
-    <div className="table-wrapper">
-      <table className="table">
+    <div className="clienttable-wrapper">
+      <table className="clienttable">
         <thead>
           <tr>
             <th></th>
@@ -54,7 +54,20 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
                     {row.dependency}
                   </span>
                 </td>
-                
+                <td>{row.dependencyfeaturename}</td>
+                <td>{row.phase}</td>
+                <td>{row.pecificrequirement}</td>
+                <td>{row.fixedcustom}</td>
+                <td>{row.developmentowner}</td>
+                <td>{row.productmanager}</td>
+                <td>{row.storypoints}</td>
+                <td>{row.estimateconfidencescore}</td>
+                <td>{row.estimatedby}</td>
+                <td>{row.timeline}</td>
+                <td>{row.urltoADOTicket}</td>
+                <td>{row.inPxFRsheet}</td>
+                <td>{row.commentsassumptions}</td>
+              
               </tr>
             );
           })}

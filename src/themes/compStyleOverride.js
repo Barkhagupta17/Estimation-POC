@@ -30,12 +30,16 @@ export default function componentStyleOverrides(theme) {
         },
         title: {
           fontSize: '1.125rem'
+        },
+        content:{
+          overflow:'hidden',
         }
       }
     },
     MuiCardContent: {
       styleOverrides: {
         root: {
+         
           padding: '24px'
         }
       }

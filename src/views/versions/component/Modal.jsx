@@ -26,7 +26,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
   const [errors, setErrors] = useState("");
 
   const validateForm = () => {
-    if (formState.featurename && formState.description && formState.dependency) {
+    if (formState.featurename && formState.description) {
       setErrors("");
       return true;
     } else {
@@ -35,6 +35,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
         if (!value) {
           errorFields.push(key);
         }
+        
       }
       setErrors(errorFields.join(", "));
       return false;
@@ -101,7 +102,68 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
           </div>
           <div className="form-group">
             <label htmlFor="specificrequirement">Specific Requirement in RFP? (Y/N)</label>
-            <input name="specificrequirement" onChange={handleChange} value={formState.specificrequirement} />
+            <select
+              name="specificrequirement"
+              onChange={handleChange}
+              value={formState.specificrequirement}
+            >
+              <option value="Y">Y</option>
+              <option value="N">N</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="fixedcustom">Fixed/Custom</label>
+            <select
+              name="fixedcustom"
+              onChange={handleChange}
+              value={formState.fixedcustom}
+            >
+              <option value="Fixed">Fixed</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="developmentowner">Development Owner</label>
+            <select
+              name="developmentowner"
+              onChange={handleChange}
+              value={formState.developmentowner}
+            >
+              <option value="Y">Client Delivery</option>
+              <option value="N">Product</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <label htmlFor="productmanager">Product Manager</label>
+            <input  name="productmanager" onChange={handleChange} value={formState.productmanager} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="storypoints">Story Points</label>
+            <input type='number' name="storypoints" onChange={handleChange} value={formState.storypoints} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="estimateconfidencescore">Estimate Confidence Score</label>
+            <input type='number' name="estimateconfidencescore" onChange={handleChange} value={formState.estimateconfidencescore} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="estimatedby">Estimated By</label>
+            <input  name="estimatedby" onChange={handleChange} value={formState.estimatedby} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="timeline">Timeline</label>
+            <input  name="timeline" onChange={handleChange} value={formState.timeline} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="urltoADOTicket">URL to ADO Ticket</label>
+            <input  name="urltoADOTicket" onChange={handleChange} value={formState.urltoADOTicket} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="inPxFRsheet">In Px F&R sheet?</label>
+            <input  name="inPxFRsheet" onChange={handleChange} value={formState.inPxFRsheet} />
+          </div>
+          <div className="form-group">
+            <label htmlFor="commentsassumptions">Comments/Assumptions</label>
+            <input  name="commentsassumptions" onChange={handleChange} value={formState.commentsassumptions} />
           </div>
           {errors && <div className="error">{`Please include: ${errors}`}</div>}
           <button type="submit" className="btn" onClick={handleSubmit} >

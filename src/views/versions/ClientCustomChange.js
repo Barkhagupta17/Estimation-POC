@@ -9,15 +9,15 @@ function ClientCustomChange() {
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
     {
-      featurename: "Home",
-      description: "This is the main page of the website",
+      featurename: "Data Migration",
+      description: "Migrating data to ADO",
       dependency: "Y",
     },
-    {
-      featurename: "About Us",
-      description: "This page has details about the company",
-      dependency: "N",
-    },
+    // {
+    //   featurename: "About Us",
+    //   description: "This page has details about the company",
+    //   dependency: "N",
+    // },
     
   ]);
   const [rowToEdit, setRowToEdit] = useState(null);

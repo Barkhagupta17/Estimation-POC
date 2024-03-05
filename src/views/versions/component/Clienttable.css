@@ -1,39 +1,40 @@
-.table-wrapper {
+.clienttable-wrapper {
     width: 100%;
+    overflow:hidden
   }
   
-  .table {
+  .clienttable {
     display: block;
-    /* overflow: scroll; */
+  font-size: 15px;
     table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 0px 10px 10px #ccc;
     border-radius: 10px;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     /* width: 100em; */
     /* max-width: 30%; */
     margin: 0px;
     table-layout: auto;
-    /* overflow-x: scroll; */
+    overflow: auto;
   }
   
-  .table thead {
+  .clienttable thead {
     background-color: #ccc;
     color: #222;
   }
   
-  .table th,
-  .table td {
+  .clienttable th,
+  .clienttable td {
     padding: 0.8rem;
   }
   
-  .table td {
+  .clienttable td {
     border-top: 0.5px solid #ddd;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   
-  .table tbody tr:hover {
+  .clienttable tbody tr:hover {
     background-color: #eee;
   }
   
@@ -47,18 +48,7 @@
     color: white;
   }
   
-  .label-draft {
-    background-color: #777;
-  }
-  
-  .label-live {
-    background-color: #42a942;
-  }
-  
-  .label-error {
-    background-color: #d9534f;
-  }
-  
+
   .actions {
     display: flex;
     justify-content: space-around;

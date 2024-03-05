@@ -16,6 +16,8 @@
     padding: 2rem;
     background-color: white;
     width: 25em;
+    height: 400px;
+    overflow-y: scroll;
   }
   
   .modal .btn {
