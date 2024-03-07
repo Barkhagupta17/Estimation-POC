@@ -43,8 +43,7 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
                     <BsFillTrashFill
                       className="delete-btn"
                       onClick={() => deleteRow(idx)}
-                    />
-                    
+                    />                    
                   </span>
                 </td>
                 <td>{row.featurename}</td>
