@@ -5,11 +5,18 @@ import { Stack, Box } from '@mui/material';
 
 
 export default function BasicRowEditingGrid() {
+  const column = React.useMemo(
+    () =>
+      columns.map((col) =>
+        col.field  ? { ...col, sortable: false } : col,
+      ),
+    [columns],
+  );
   return (
     <Stack spacing={2} sx={{ width: '100%' }}>
       <Box sx={{ height: 350, width: '100%' }}>
         <h4>Client Customization Cost</h4>
-      <DataGrid editMode="row" rows={rows} columns={columns} 
+      <DataGrid disableColumnMenu editMode="row" rows={rows} columns={column} 
         initialState={{
             aggregation: {
               model: {
@@ -37,19 +44,19 @@ const columns = [
   {
     field: 'effort',
     headerName: 'Effort',    
-    width: 180,
+    // width: 180,
     editable: false,
   },
   {
     field: 'costhrrate',
     headerName: 'Cost Hr Rate',
-    width: 180,
+    // width: 180,
     editable: false,
   },
   {
     field: 'cost',
     headerName: 'Cost',
-    width: 180,
+    // width: 180,
     editable: false,
   },
   {
@@ -132,3 +139,4 @@ const rows = [
   },
   
 ];
+

@@ -1,0 +1,8 @@
+.estimation-table th, td{
+    text-align: center !important;
+}
+
+.disabled-link {
+    pointer-events: none;
+    opacity: 0.4;
+  }

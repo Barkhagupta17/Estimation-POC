@@ -15,26 +15,18 @@ const pages = {
   type: 'group',
   children: [
     {
-      id: 'authentication',
+      id: 'applications',
       title: 'Toyota',
       type: 'collapse',
       icon: icons.IconKey,
 
       children: [
         {
-          id: 'login3',
+          id: 'est',
           title: 'Estimation 1',
-          type: 'collapse',
-          
-          children: [
-            {
-              id: 'v1',
-              title: 'Version 1',
-              type: 'item',
-              url: '/v1',
-              
-            }
-          ]
+          type: 'item',
+          url : '/estimation'    
+        
         }
         ,
         {
@@ -57,8 +49,8 @@ const pages = {
           id: 'login3',
           title: 'Estimation 1',
           type: 'item',
-          url: '/pages/login/login3',
-          target: true
+          url: 'login',
+          // target: true
         },
         {
           id: 'register3',
