@@ -22,19 +22,27 @@ const pages = {
 
       children: [
         {
-          id: 'est',
-          title: 'Estimation 1',
+          id: 'estimation1',
+          title: 'Toyota programs estimation',
           type: 'item',
           url : '/estimation'    
         
         }
         ,
         {
-          id: 'register3',
-          title: 'Estimation 2',
+          id: 'estimation2',
+          title: 'Toyota reports estimation',
           type: 'item',
-          url: '/pages/register/register3',
-          target: true
+          url: '/sample-page',
+          // target: true
+        }
+        ,
+        {
+          id: 'estimation3',
+          title: 'Toyota reports estimation',
+          type: 'item',
+          url: '/sample-page',
+          // target: true
         }
       ]
     },
