@@ -8,11 +8,13 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Button, Stack } from '@mui/material';
 
 
-function createData(sr,name, date, recomment, view, edit) {
-  return {sr, name, date, recomment, view, edit };
+
+function createData(sr, name, date, recomment, view, edit) {
+  return { sr, name, date, recomment, view, edit };
 }
 
 const rows = [
@@ -23,39 +25,45 @@ const rows = [
 
 const Estimation = () => {
   return (
-    <Card>
+    <Card sx={{ p: 2 }}>
+      <Stack direction="row" alignItems="center" justifyContent="right" spacing={1}>
+        <Button size="1.3rem" type="button" variant="contained" color="secondary">
+          Create Version
+        </Button>
+      </Stack>
+
       <TableContainer>
-      <Table aria-label="simple table" className='estimation-table'>
-        <TableHead>
-          <TableRow>
-          <TableCell>#</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Date</TableCell>
-            <TableCell>Revision Comments</TableCell>
-            <TableCell>View</TableCell>
-            <TableCell>Create Version</TableCell>
-            
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              
-            >
-              <TableCell component="th" scope="row">
-                {row.sr}
-              </TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.date}</TableCell>
-              <TableCell align="right">{row.recomment}</TableCell>
-              <TableCell align="right">{row.view}</TableCell>
-              <TableCell align="right">{row.edit}</TableCell>
+        <Table aria-label="simple table" className='estimation-table'>
+          <TableHead>
+            <TableRow>
+              <TableCell>#</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Date</TableCell>
+              <TableCell>Revision Comments</TableCell>
+              <TableCell>View</TableCell>
+              <TableCell>Edit</TableCell>
+
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.name}
+
+              >
+                <TableCell component="th" scope="row">
+                  {row.sr}
+                </TableCell>
+                <TableCell align="right">{row.name}</TableCell>
+                <TableCell align="right">{row.date}</TableCell>
+                <TableCell align="right">{row.recomment}</TableCell>
+                <TableCell align="right">{row.view}</TableCell>
+                <TableCell align="right">{row.edit}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Card>
   )
 }
