@@ -1,39 +1,39 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Stack, Box } from '@mui/material';
+import { Stack, Box, Button } from '@mui/material';
 // import Table from "ui-component/Table.js";
 
-
 export default function BasicRowEditingGrid() {
-  const column = React.useMemo(
-    () =>
-      columns.map((col) =>
-        col.field  ? { ...col, sortable: false } : col,
-      ),
-    [columns],
-  );
+  const column = React.useMemo(() => columns.map((col) => (col.field ? { ...col, sortable: false } : col)), [columns]);
   return (
-    <Stack spacing={2} sx={{ width: '100%' }}>
+    <Stack spacing={2} sx={{ width: '100%' }} style={{ height: 450 }}>
       <Box sx={{ height: 350, width: '100%' }}>
         <h4>Client Customization Cost</h4>
-      <DataGrid disableColumnMenu
+        <DataGrid
+          disableColumnMenu
           hideFooter
-      editMode="row" rows={rows} columns={column} 
-        initialState={{
+          editMode="row"
+          rows={rows}
+          columns={column}
+          style={{ marginBottom: '20px' }}
+          initialState={{
             aggregation: {
               model: {
-                effort: 'sum',
-              },
-            },
+                effort: 'sum'
+              }
+            }
           }}
-      />
+        />
+        <Button size="1.3rem" type="button" variant="contained" color="secondary">
+          Save
+        </Button>
       </Box>
     </Stack>
     // <Stack spacing={2} sx={{ width: '100%' }}>
     //   <Box sx={{ height: 350, width: '100%' }}>
     // <>
     //   <h4>Client Customization Cost</h4>
-    //   <Table rows={rows} columns={columns} 
+    //   <Table rows={rows} columns={columns}
     //     // initialState={{
     //     //     aggregation: {
     //     //       model: {
@@ -45,7 +45,6 @@ export default function BasicRowEditingGrid() {
     //   </>
     // </Box>
     // </Stack>
-    
   );
 }
 
@@ -57,32 +56,32 @@ const columns = [
     type: 'number',
     editable: true,
     align: 'left',
-    headerAlign: 'left',
+    headerAlign: 'left'
   },
   {
     field: 'effort',
-    headerName: 'Effort',    
+    headerName: 'Effort',
     // width: 180,
-    editable: false,
+    editable: false
   },
   {
     field: 'costhrrate',
     headerName: 'Cost Hr Rate',
     // width: 180,
-    editable: false,
+    editable: false
   },
   {
     field: 'cost',
     headerName: 'Cost',
     // width: 180,
-    editable: false,
+    editable: false
   },
   {
     field: 'comments',
     headerName: 'Comments',
     width: 180,
-    editable: true,
-  },
+    editable: true
+  }
 ];
 
 const rows = [
@@ -91,7 +90,7 @@ const rows = [
     role: 'Digital Project Manager',
     FTE: 0.5,
     effort: 40,
-    costhrrate: '$ ' + 91.00,
+    costhrrate: '$ ' + 91.0,
     cost: '$ ' + 3640,
     comments: ''
   },
@@ -101,7 +100,7 @@ const rows = [
     role: 'Digital Business Analyst ',
     FTE: 0,
     effort: 0,
-    costhrrate: '$ ' + 74.00,
+    costhrrate: '$ ' + 74.0,
     cost: '$ ' + '-',
     comments: ''
   },
@@ -111,7 +110,7 @@ const rows = [
     role: 'Digital Solution Architect',
     FTE: 0,
     effort: 0,
-    costhrrate: '$ ' + 111.00,
+    costhrrate: '$ ' + 111.0,
     cost: '$ ' + '-',
     comments: ''
   },
@@ -121,7 +120,7 @@ const rows = [
     role: 'Digital Software Engineer-Onsite',
     FTE: 0,
     effort: 0,
-    costhrrate: '$ ' + 100.80,
+    costhrrate: '$ ' + 100.8,
     cost: '$ ' + '-',
     comments: ''
   },
@@ -131,7 +130,7 @@ const rows = [
     role: 'Digital User Experience Architect',
     FTE: 0,
     effort: 0,
-    costhrrate: '$ ' + 92.00,
+    costhrrate: '$ ' + 92.0,
     cost: '$ ' + '-',
     comments: 'Component Library Needed?'
   },
@@ -154,7 +153,5 @@ const rows = [
     costhrrate: '$ ' + 42.21,
     cost: '$ ' + 3380,
     comments: ''
-  },
-  
+  }
 ];
-
