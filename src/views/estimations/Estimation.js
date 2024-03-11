@@ -18,9 +18,9 @@ function createData(sr, name, date, recomment, view, edit) {
 }
 
 const rows = [
-  createData(1.3, 'Toyota Estimate V3', '27/02/24', 'This is V3', <Link to={'/estimation/v1'}>View</Link>, <Link to={'/estimation/v1'}>Edit</Link>),
-  createData(1.2, 'Toyota Estimate V2', '15/02/24', 'This is V2', <Link to={'/estimation/v1'}>View</Link>, <Link to={'/estimation/v1'} className='disabled-link'>Edit</Link>),
-  createData(1.1, 'Toyota Estimate V1', '07/02/24', 'This is V1', <Link to={'/estimation/v1'}>View</Link>, <Link to={'/estimation/v1'} className='disabled-link'>Edit</Link>),
+  createData(1.3, 'Toyota programs estimation V3', '27/02/24', 'This is V3', <Link to={'/estimation/v1'}>View</Link>, <Link to={'/estimation/v1'}>Edit</Link>),
+  createData(1.2, 'Toyota programs estimation V2', '15/02/24', 'This is V2', <Link to={'/estimation/v1'}>View</Link>, <Link to={'/estimation/v1'} className='disabled-link'>Edit</Link>),
+  createData(1.1, 'Toyota programs estimation V1', '07/02/24', 'This is V1', <Link to={'/estimation/v1'}>View</Link>, <Link to={'/estimation/v1'} className='disabled-link'>Edit</Link>),
 ];
 
 const Estimation = () => {

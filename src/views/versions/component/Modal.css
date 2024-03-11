@@ -15,8 +15,8 @@
     border-radius: 5px;
     padding: 2rem;
     background-color: white;
-    width: 25em;
-    height: 400px;
+    width: 35em;
+    height: 478px;
     overflow-y: scroll;
   }
   
@@ -37,11 +37,21 @@
     border: 1px solid black;
     border-radius: 0.3rem;
     padding: 0.3rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .form-group label {
     margin-bottom: 0.2rem;
+    font-size: 0.7em;
+    color: #673AB7;
+  }
+  .row{
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* background-color: #2196F3; */
+    /* padding: 10px; */
+    grid-gap: 20px;
   }
   
   .error {

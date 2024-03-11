@@ -5,22 +5,27 @@
   
   .clienttable {
     display: block;
-  font-size: 15px;
+    font-size: 15px;
     table-layout: fixed;
     border-collapse: collapse;
     box-shadow: 0px 10px 10px #ccc;
-    border-radius: 10px;
-    /* white-space: nowrap; */
+    border-radius: 5px;
+    white-space: nowrap;
     /* width: 100em; */
     /* max-width: 30%; */
+    min-height: 300px;
+    color: #364152;
+    font-size: 14px;
     margin: 0px;
     table-layout: auto;
     overflow: auto;
+    border: 1px solid #ccc;
   }
   
   .clienttable thead {
-    background-color: #ccc;
-    color: #222;
+    /* background-color: #ccc; */
+    text-align: left;
+    color: #364152;
   }
   
   .clienttable th,
@@ -58,6 +63,6 @@
     cursor: pointer;
   }
   
-  .delete-btn {
+  /* .delete-btn {
     color: #e10d05;
-  }
+  } */

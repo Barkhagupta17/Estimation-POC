@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Stack, Box } from '@mui/material';
-
+// import Table from "ui-component/Table.js";
 
 
 export default function BasicRowEditingGrid() {
@@ -16,7 +16,9 @@ export default function BasicRowEditingGrid() {
     <Stack spacing={2} sx={{ width: '100%' }}>
       <Box sx={{ height: 350, width: '100%' }}>
         <h4>Client Customization Cost</h4>
-      <DataGrid disableColumnMenu editMode="row" rows={rows} columns={column} 
+      <DataGrid disableColumnMenu
+          hideFooter
+      editMode="row" rows={rows} columns={column} 
         initialState={{
             aggregation: {
               model: {
@@ -27,6 +29,22 @@ export default function BasicRowEditingGrid() {
       />
       </Box>
     </Stack>
+    // <Stack spacing={2} sx={{ width: '100%' }}>
+    //   <Box sx={{ height: 350, width: '100%' }}>
+    // <>
+    //   <h4>Client Customization Cost</h4>
+    //   <Table rows={rows} columns={columns} 
+    //     // initialState={{
+    //     //     aggregation: {
+    //     //       model: {
+    //     //         effort: 'sum',
+    //     //       },
+    //     //     },
+    //     //   }}
+    //   />
+    //   </>
+    // </Box>
+    // </Stack>
     
   );
 }

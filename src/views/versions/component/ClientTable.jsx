@@ -1,9 +1,94 @@
 import React from "react";
-
-import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+// import Table from "ui-component/Table.js";
+// import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+// import Button from '@mui/material/Button';
+// import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import "./Clienttable.css";
+// import { number } from "prop-types";
 
 export const ClientTable = ({ rows, deleteRow, editRow }) => {
+  // const columns=[
+  //   {
+  //     field: 'actions',
+  //     type: 'actions',
+  //     headerName: '',
+  //     width: 50,
+  //     cellClassName: 'actions',
+  //     getActions: ({id}) => {
+                   
+  //         return [
+  //           <span className="actions" key={id}>
+  //           <EditIcon
+  //              onClick={() => editRow(id)}
+  //           />
+  //           <DeleteIcon
+  //             onClick={() => deleteRow(id)}
+  //           />                    
+  //         </span>
+  //         ];
+  //     },
+  // },
+  //     { field: 'featurename', 
+  //     headerName: 'Feature Name',
+  //     },
+  //     {
+  //       field: 'description',
+  //       headerName: 'Description',
+          
+  //       align: 'left',
+  //       headerAlign: 'left',
+  //     },
+  //     {
+  //       field: 'dependency',
+  //       headerName: 'Dependency? (Y/N)',    
+  //       editable: false,
+  //     },
+  //     {
+  //       field: 'dependencyfeaturename',
+  //       headerName: 'Dependency (Feature Name)',
+      
+  //     },
+  //     { field: 'phase', 
+  //     headerName: 'Phase',
+  //     },
+  //     { field: 'specificrequirement', 
+  //     headerName: 'Specific Requirement in RFP? (Y/N)',
+  //     },
+  //     { field: 'fixedcustom', 
+  //     headerName: 'Fixed /Custom',
+  //     },
+  //     { field: 'developmentowner', 
+  //     headerName: 'Development Owner',
+  //     },
+  //     { field: 'productmanager', 
+  //     headerName: 'Product Manager',
+  //     },
+  //     { field: 'storypoints', 
+  //     headerName: 'Story Points',
+  //     type: number,
+  //     },
+  //     { field: 'estimateconfidencescore', 
+  //     headerName: 'Estimate Confidence Score',
+  //     },
+  //     { field: 'estimatedby', 
+  //     headerName: 'Estimated By',
+  //     },
+  //     { field: 'timeline', 
+  //     headerName: 'Timeline',
+  //     },
+  //     { field: 'urltoADOTicket', 
+  //     headerName: 'URL to ADO Ticket',
+  //     },
+  //     { field: 'inPxFRsheet', 
+  //     headerName: 'In Px F&R sheet?',
+  //     },
+  //     { field: 'commentsassumptions', 
+  //     headerName: 'Comments/Assumptions',
+  //     },
+    
+  // ]
   return (
   
     <div className="clienttable-wrapper">
@@ -36,11 +121,11 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
               <tr key={idx}>
                 <td className="fit">
                   <span className="actions">
-                    <BsFillPencilFill
+                    <EditIcon
                         className="edit-btn"
                         onClick={() => editRow(idx)}
                     />
-                    <BsFillTrashFill
+                    <DeleteIcon
                       className="delete-btn"
                       onClick={() => deleteRow(idx)}
                     />                    
@@ -55,7 +140,7 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
                 </td>
                 <td>{row.dependencyfeaturename}</td>
                 <td>{row.phase}</td>
-                <td>{row.pecificrequirement}</td>
+                <td>{row.specificrequirement}</td>
                 <td>{row.fixedcustom}</td>
                 <td>{row.developmentowner}</td>
                 <td>{row.productmanager}</td>
@@ -72,6 +157,9 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
           })}
         </tbody>
       </table>
+      {/* <Table rows={rows} columns={columns}>
+
+      </Table> */}
     </div>
   );
 };

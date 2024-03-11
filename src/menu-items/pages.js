@@ -39,7 +39,7 @@ const pages = {
         ,
         {
           id: 'estimation3',
-          title: 'Toyota reports estimation',
+          title: 'Toyota recognitions estimation',
           type: 'item',
           url: '/sample-page',
           // target: true

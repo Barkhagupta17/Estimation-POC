@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Button } from '@mui/material';
 import "./Modal.css";
 
 export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
@@ -7,12 +7,12 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     defaultValue || {
       featurename: "",
       description: "",
-      dependency: "Y",
+      dependency: "",
       dependencyfeaturename:"",
       phase:"",
       specificrequirement:"",
       fixedcustom:"",
-      developmentowner:"Client Delivery",
+      developmentowner:"",
       productmanager:"",
       storypoints:"",
       estimateconfidencescore:"",
@@ -69,18 +69,21 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
     >
       <div className="modal">
         <form>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="featurename">Feature Name</label>
             <input name="featurename" onChange={handleChange} value={formState.featurename} />
           </div>
           <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea
+            <input
               name="description"
               onChange={handleChange}
               value={formState.description}
             />
           </div>
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="dependency">Dependency? (Y/N)</label>
             <select
@@ -88,6 +91,7 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
               onChange={handleChange}
               value={formState.dependency}
             >
+              {/* <option value="Y2">Y2</option> */}
               <option value="Y">Y</option>
               <option value="N">N</option>
             </select>
@@ -96,13 +100,16 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             <label htmlFor="dependencyfeaturename">Dependency (Feature Name)</label>
             <input name="dependencyfeaturename" onChange={handleChange} value={formState.dependencyfeaturename} />
           </div>
+          
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="phase">Phase</label>
             <input name="phase" onChange={handleChange} value={formState.phase} />
           </div>
           <div className="form-group">
             <label htmlFor="specificrequirement">Specific Requirement in RFP? (Y/N)</label>
-            <select
+            <select 
               name="specificrequirement"
               onChange={handleChange}
               value={formState.specificrequirement}
@@ -111,6 +118,9 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
               <option value="N">N</option>
             </select>
           </div>
+          
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="fixedcustom">Fixed/Custom</label>
             <select
@@ -129,26 +139,35 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
               onChange={handleChange}
               value={formState.developmentowner}
             >
-              <option value="Y">Client Delivery</option>
-              <option value="N">Product</option>
+             
+              <option value="Client Delivery">Client Delivery</option>
+              <option value="Product">Product</option>
             </select>
           </div>
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="productmanager">Product Manager</label>
             <input  name="productmanager" onChange={handleChange} value={formState.productmanager} />
           </div>
           <div className="form-group">
             <label htmlFor="storypoints">Story Points</label>
-            <input type='number' name="storypoints" onChange={handleChange} value={formState.storypoints} />
+            <input   type='number' name="storypoints" onChange={handleChange} value={formState.storypoints} />
           </div>
+          
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="estimateconfidencescore">Estimate Confidence Score</label>
-            <input type='number' name="estimateconfidencescore" onChange={handleChange} value={formState.estimateconfidencescore} />
+            <input  name="estimateconfidencescore" onChange={handleChange} value={formState.estimateconfidencescore} />
           </div>
           <div className="form-group">
             <label htmlFor="estimatedby">Estimated By</label>
             <input  name="estimatedby" onChange={handleChange} value={formState.estimatedby} />
           </div>
+          
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="timeline">Timeline</label>
             <input  name="timeline" onChange={handleChange} value={formState.timeline} />
@@ -157,6 +176,8 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             <label htmlFor="urltoADOTicket">URL to ADO Ticket</label>
             <input  name="urltoADOTicket" onChange={handleChange} value={formState.urltoADOTicket} />
           </div>
+          </div>
+          <div className="row">
           <div className="form-group">
             <label htmlFor="inPxFRsheet">In Px F&R sheet?</label>
             <input  name="inPxFRsheet" onChange={handleChange} value={formState.inPxFRsheet} />
@@ -165,10 +186,16 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
             <label htmlFor="commentsassumptions">Comments/Assumptions</label>
             <input  name="commentsassumptions" onChange={handleChange} value={formState.commentsassumptions} />
           </div>
+          </div>
+          
           {errors && <div className="error">{`Please include: ${errors}`}</div>}
-          <button type="submit" className="btn" onClick={handleSubmit} >
+          {/* <button type="submit" className="btn" onClick={handleSubmit} >
             Submit
-          </button>
+          </button> */}
+          <Button  style={{marginTop:'20px'}}size="1.3rem" type="submit" variant="contained" color="secondary" onClick={handleSubmit}>
+           Submit
+          </Button>
+
         </form>
       </div>
     </div>

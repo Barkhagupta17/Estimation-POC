@@ -8,9 +8,10 @@ import FullFeaturedCrudGrid from './Grid';
 import BasicRowEditingGrid from './Teamandcost'
 
 // project imports
-import { Card } from '@mui/material';
+// import { Card } from '@mui/material';
 // import MainCard from 'ui-component/cards/MainCard';
 import ClientCustomChange from './ClientCustomChange';
+import MainCard from 'ui-component/cards/MainCard';
 
 const Version = () => {
     const [value, setValue] = React.useState('Client-Custom-Change');
@@ -29,19 +30,22 @@ const Version = () => {
                         indicatorColor="secondary"
                         aria-label="secondary tabs example"
                     >
+                        <Tab value="Detailed Schedule & Tasks" label="Detailed Schedule & Tasks" />
                         <Tab value="Client-Custom-Change" label="Client Custom Change" />
                         <Tab value="Team-&-Cost" label="Team & Cost" />
+                        
                         <Tab value="Annual-Support-Cost" label="Annual Support Cost" />
-                        <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab>
+                        {/* <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab> */}
                     </Tabs>
-
-                    <TabPanel value="Client-Custom-Change" sx={{overflow: "hidden"}}><ClientCustomChange /></TabPanel>
+                    <TabPanel value="Detailed Schedule & Tasks"></TabPanel>
+                    <TabPanel value="Client-Custom-Change" ><ClientCustomChange /></TabPanel>
                     <TabPanel value="Team-&-Cost"><BasicRowEditingGrid /></TabPanel>
+                    
                     <TabPanel value="Annual-Support-Cost"><FullFeaturedCrudGrid /></TabPanel>
-                    <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel>
+                    {/* <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel> */}
                 </TabContext>
             </Box>
-            </Card>
+        }/>
        
 
         
