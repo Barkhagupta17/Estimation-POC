@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
-import { Grid, useMediaQuery } from '@mui/material';
-// import { Divider, Grid, Typography, useMediaQuery } from '@mui/material';
+import { Divider, Grid, Typography, useMediaQuery } from '@mui/material';
 
 // project imports
 import AuthWrapper1 from '../AuthWrapper1';
@@ -50,7 +49,7 @@ const Login = () => {
                   <Grid item xs={12}>
                     <AuthLogin />
                   </Grid>
-                  {/* <Grid item xs={12}>
+                  <Grid item xs={12}>
                     <Divider />
                   </Grid>
                   <Grid item xs={12}>
@@ -59,7 +58,7 @@ const Login = () => {
                         Don&apos;t have an account?
                       </Typography>
                     </Grid>
-                  </Grid> */}
+                  </Grid>
                 </Grid>
               </AuthCardWrapper>
             </Grid>
