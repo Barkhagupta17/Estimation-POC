@@ -20,8 +20,7 @@ const Version = () => {
     setValue(newValue);
   };
   return (
-    <MainCard
-      title={
+    <Card>
         <Box sx={{ width: '100%', padding: '20px' }}>
           <TabContext value={value}>
             <Tabs
@@ -36,7 +35,7 @@ const Version = () => {
               <Tab value="Team-&-Cost" label="Team & Cost" />
 
               <Tab value="Annual-Support-Cost" label="Annual Support Cost" />
-              {/* <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab> */}
+              <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab>
             </Tabs>
             <TabPanel value="Detailed Schedule & Tasks"></TabPanel>
             <TabPanel value="Client-Custom-Change" style={{ height: '450' }}>
@@ -49,11 +48,11 @@ const Version = () => {
             <TabPanel value="Annual-Support-Cost">
               <FullFeaturedCrudGrid />
             </TabPanel>
-            {/* <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel> */}
+            <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel>
           </TabContext>
         </Box>
-      }
-    />
+      
+        </Card>
   );
 };
 
