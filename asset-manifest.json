@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/Estimation-POC/static/css/main.dc1a110d.css",
+    "main.js": "/Estimation-POC/static/js/main.591f72f6.js",
+    "static/js/19.a42df986.chunk.js": "/Estimation-POC/static/js/19.a42df986.chunk.js",
+    "static/js/971.827cf222.chunk.js": "/Estimation-POC/static/js/971.827cf222.chunk.js",
+    "static/js/411.ddd68a3b.chunk.js": "/Estimation-POC/static/js/411.ddd68a3b.chunk.js",
+    "static/js/125.644558a9.chunk.js": "/Estimation-POC/static/js/125.644558a9.chunk.js",
+    "static/js/46.5c7f2de2.chunk.js": "/Estimation-POC/static/js/46.5c7f2de2.chunk.js",
+    "static/media/user-round.svg": "/Estimation-POC/static/media/user-round.27fe79b102ea6aad2f60e66cff82818d.svg",
+    "static/media/logo.png": "/Estimation-POC/static/media/logo.e7cc82ee1da7e2837304.png",
+    "index.html": "/Estimation-POC/index.html",
+    "static/media/social-google.svg": "/Estimation-POC/static/media/social-google.a57081bd95c2519caad91216a8dba3ad.svg"
+  },
+  "entrypoints": [
+    "static/css/main.dc1a110d.css",
+    "static/js/main.591f72f6.js"
+  ]
+}
