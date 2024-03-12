@@ -15,7 +15,7 @@ import {
   InputLabel,
   OutlinedInput,
   Stack,
-  Typography,
+  Typography
   // useMediaQuery
 } from '@mui/material';
 
@@ -56,10 +56,10 @@ const FirebaseLogin = ({ ...others }) => {
     event.preventDefault();
   };
 
-  const handleLogin = (event) =>{
+  const handleLogin = (event) => {
     event.preventDefault();
     navigate('/dashboard');
-  }
+  };
 
   return (
     <>
@@ -219,7 +219,16 @@ const FirebaseLogin = ({ ...others }) => {
 
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
-                <Button disableElevation disabled={isSubmitting} onClick={handleLogin} fullWidth size="large" type="submit" variant="contained" color="secondary">
+                <Button
+                  disableElevation
+                  disabled={isSubmitting}
+                  onClick={handleLogin}
+                  fullWidth
+                  size="large"
+                  type="submit"
+                  variant="contained"
+                  color="secondary"
+                >
                   Sign in
                 </Button>
               </AnimateButton>
