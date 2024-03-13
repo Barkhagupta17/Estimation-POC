@@ -42,7 +42,7 @@ const Estimation = () => {
               <TableCell>#</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Created By</TableCell>
-              <TableCell>Date / Time </TableCell>
+              <TableCell>Created Date / Time </TableCell>
               <TableCell>Revision Comments</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Actions</TableCell>
@@ -88,14 +88,14 @@ const Estimation = () => {
                         <Link to={'/estimation/v1'}>
                           <EditIcon />
                         </Link>
+                        <Divider orientation="vertical" variant="middle" flexItem />
+                        <Link to={'/estimation/v1'}>
+                          <DeleteIcon />
+                        </Link>
                       </>
                     ) : (
                       ''
                     )}
-                    <Divider orientation="vertical" variant="middle" flexItem />
-                    <Link to={'/estimation/v1'}>
-                      <DeleteIcon />
-                    </Link>
                   </Box>
                 </TableCell>
                 <TableCell align="right">{row.actions}</TableCell>
