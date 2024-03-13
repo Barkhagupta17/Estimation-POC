@@ -5,7 +5,12 @@ import React from "react";
 // import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import "./Clienttable.css";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 // import { number } from "prop-types";
 
 export const ClientTable = ({ rows, deleteRow, editRow }) => {
@@ -91,35 +96,35 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
   // ]
   return (
   
-    <div className="clienttable-wrapper">
-      <table className="clienttable">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Feature Name</th>
-            <th className="expand">Description</th>
-            <th>Dependency? (Y/N)</th>
-            <th>Dependency (Feature Name)</th>
-            <th>Phase</th>
-            <th>Specific Requirement in RFP? (Y/N)</th>
-            <th>Fixed /Custom</th>
-            <th>Development Owner</th>
-            <th>Product Manager</th>
-            <th>Story Points</th>
-            <th>Estimate Confidence Score</th>
-            <th>Estimated By</th>
-            <th>Timeline</th>
-            <th>URL to ADO Ticket</th>
-            <th>In Px F&R sheet?</th>
-            <th>Comments/Assumptions</th>
-          </tr>
-        </thead>
-        <tbody>
+    <TableContainer >
+      <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead >
+          <TableRow>
+           <TableCell ></TableCell>
+           <TableCell align="center" sx={{minWidth: 140 }}>Feature Name</TableCell>
+           <TableCell align="center" sx={{minWidth: 340 }}>Description</TableCell>
+           <TableCell align="center">Dependency? (Y/N)</TableCell>
+           <TableCell align="center">Dependency (Feature Name)</TableCell>
+           <TableCell align="center">Phase</TableCell>
+           <TableCell align="center">Specific Requirement in RFP? (Y/N)</TableCell>
+           <TableCell align="center">Fixed /Custom</TableCell>
+           <TableCell align="center">Development Owner</TableCell>
+           <TableCell align="center">Product Manager</TableCell>
+           <TableCell align="center">Story Points</TableCell>
+           <TableCell align="center">Estimate Confidence Score</TableCell>
+           <TableCell align="center">Estimated By</TableCell>
+           <TableCell align="center">Timeline</TableCell>
+           <TableCell align="center" sx={{minWidth: 240 }}>URL to ADO Ticket</TableCell>
+           <TableCell align="center">In Px F&R sheet?</TableCell>
+           <TableCell align="center" sx={{minWidth: 240 }}>Comments/Assumptions</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
           {rows.map((row, idx) => {
            
             return (
-              <tr key={idx}>
-                <td className="fit">
+              <TableRow key={idx}>
+                <TableCell className="fit">
                   <span className="actions">
                     <EditIcon
                         className="edit-btn"
@@ -130,36 +135,36 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
                       onClick={() => deleteRow(idx)}
                     />                    
                   </span>
-                </td>
-                <td>{row.featurename}</td>
-                <td className="expand">{row.description}</td>
-                <td>
+                </TableCell>
+                <TableCell>{row.featurename}</TableCell>
+                <TableCell className="expand">{row.description}</TableCell>
+                <TableCell>
                   <span>
                     {row.dependency}
                   </span>
-                </td>
-                <td>{row.dependencyfeaturename}</td>
-                <td>{row.phase}</td>
-                <td>{row.specificrequirement}</td>
-                <td>{row.fixedcustom}</td>
-                <td>{row.developmentowner}</td>
-                <td>{row.productmanager}</td>
-                <td>{row.storypoints}</td>
-                <td>{row.estimateconfidencescore}</td>
-                <td>{row.estimatedby}</td>
-                <td>{row.timeline}</td>
-                <td>{row.urltoADOTicket}</td>
-                <td>{row.inPxFRsheet}</td>
-                <td>{row.commentsassumptions}</td>
+                </TableCell>
+                <TableCell >{row.dependencyfeaturename}</TableCell>
+                <TableCell >{row.phase}</TableCell>
+                <TableCell>{row.specificrequirement}</TableCell>
+                <TableCell>{row.fixedcustom}</TableCell>
+                <TableCell>{row.developmentowner}</TableCell>
+                <TableCell>{row.productmanager}</TableCell>
+                <TableCell>{row.storypoints}</TableCell>
+                <TableCell>{row.estimateconfidencescore}</TableCell>
+                <TableCell>{row.estimatedby}</TableCell>
+                <TableCell>{row.timeline}</TableCell>
+                <TableCell>{row.urltoADOTicket}</TableCell>
+                <TableCell>{row.inPxFRsheet}</TableCell>
+                <TableCell>{row.commentsassumptions}</TableCell>
               
-              </tr>
+              </TableRow>
             );
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
       {/* <Table rows={rows} columns={columns}>
 
       </Table> */}
-    </div>
+    </TableContainer>
   );
 };

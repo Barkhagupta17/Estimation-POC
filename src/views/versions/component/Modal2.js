@@ -34,10 +34,6 @@ export const Modal2=({open, setOpen})=> {
           component: 'form',
           onSubmit: (event) => {
             event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
             handleClose();
           },
         }}
@@ -45,16 +41,17 @@ export const Modal2=({open, setOpen})=> {
         <DialogTitle></DialogTitle>
         <DialogContent>
         <FormControl fullWidth>
-        <TextField id="featurename" label="Feature Name" variant="outlined" />
-        <TextField
-          id="outlined-multiline-flexible"
+        <TextField sx={{ m: 1}} id="featurename" label="Feature Name" variant="filled" />
+        <TextField sx={{ m: 1}}
+          id="filled-multiline-flexible"
+          variant="filled"
           label="Multiline"
           multiline
           maxRows={4}
           gutterMargin
         />
-          
-          <InputLabel id="dependency-label">Dependency? (Y/N)</InputLabel>
+         <FormControl variant="filled" sx={{ m: 1}}>
+         <InputLabel  id="dependency-label">Dependency? (Y/N)</InputLabel>
             <Select
                 labelId="dependency-label"
                 id="dependency"
@@ -65,6 +62,35 @@ export const Modal2=({open, setOpen})=> {
                 <MenuItem value='Y'>Y</MenuItem>
                 <MenuItem value='N'>N</MenuItem>
             </Select>
+          </FormControl> 
+          <TextField sx={{ m: 1}} id="dependencyfeaturename" label="Dependency (Feature Name)" variant="filled" />
+          <TextField sx={{ m: 1}} id="phase" label="Phase" variant="filled" />
+          <FormControl variant="filled" sx={{ m: 1}}>
+         <InputLabel  id="specificrequirement-label">Specific Requirement in RFP? (Y/N)</InputLabel>
+            <Select
+                labelId="specificrequirement-label"
+                id="specificrequirement"
+                // // value={age}
+                label="Specific Requirement in RFP? (Y/N)"
+                // onChange={handleChange}
+            >
+                <MenuItem value='Y'>Y</MenuItem>
+                <MenuItem value='N'>N</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl variant="filled" sx={{ m: 1}}>
+         <InputLabel  id="fixedcustom-label">Fixed/Custom</InputLabel>
+            <Select
+                labelId="fixedcustom-label"
+                id="fixedcustom"
+                // // value={age}
+                label="Specific Requirement in RFP? (Y/N)"
+                // onChange={handleChange}
+            >
+                <MenuItem value='Fixed'>Fixed</MenuItem>
+                <MenuItem value='Custom'>Custom</MenuItem>
+            </Select>
+          </FormControl> 
         </FormControl>
         </DialogContent>
         <DialogActions>

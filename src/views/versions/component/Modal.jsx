@@ -199,5 +199,6 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
         </form>
       </div>
     </div>
+    
   );
 };

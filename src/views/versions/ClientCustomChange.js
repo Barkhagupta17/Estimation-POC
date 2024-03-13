@@ -5,11 +5,11 @@ import { Button } from '@mui/material';
 // import "./Customchanges.css";
 import { ClientTable } from "./component/ClientTable";
 import { Modal } from "./component/Modal";
-// import {Modal2} from "./component/Modal2";
+import {Modal2} from "./component/Modal2";
 
 function ClientCustomChange() {
   const [modalOpen, setModalOpen] = useState(false);
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [rows, setRows] = useState([
     {
       id:1,
@@ -59,17 +59,17 @@ function ClientCustomChange() {
   return (
     <div>
       <ClientTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-      {/* <button onClick={() => setModalOpen(true)} className="btn">
+      <button onClick={() => setModalOpen(true)} className="btn">
         Add
-      </button> */}
+      </button>
       <Button  style={{marginTop:'20px'}}size="1.3rem" type="button" variant="contained" color="secondary" onClick={() => setModalOpen(true)}>
             Add
           </Button>
-      {/* <button onClick={() => setOpen(true)} className="btn">
+      <button onClick={() => setOpen(true)} className="btn">
         Add2
       </button>
       
-      <Modal2 open={open} setOpen={setOpen}/> */}
+      <Modal2 open={open} setOpen={setOpen}/>
     
       {modalOpen && (
         <Modal
