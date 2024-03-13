@@ -4,13 +4,13 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
-import FullFeaturedCrudGrid from './Grid';
 import BasicRowEditingGrid from './Teamandcost';
 
 // project imports
 import { Card } from '@mui/material';
 // import MainCard from 'ui-component/cards/MainCard';
 import ClientCustomChange from './ClientCustomChange';
+import AnualSupportCost from './AnualSupportCost';
 // import MainCard from 'ui-component/cards/MainCard';
 
 const Version = () => {
@@ -46,8 +46,9 @@ const Version = () => {
             </TabPanel>
 
             <TabPanel value="Annual-Support-Cost">
-              <FullFeaturedCrudGrid />
+              <AnualSupportCost />
             </TabPanel>
+
             <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel>
           </TabContext>
         </Box>
