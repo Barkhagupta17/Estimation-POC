@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { useState } from "react";
 import { Button } from '@mui/material';
-
-// import "./Customchanges.css";
 import { ClientTable } from "./component/ClientTable";
-import { Modal } from "./component/Modal";
-import {Modal2} from "./component/Modal2";
+import {Modal} from "./component/Modal";
+import { Card } from '@mui/material';
 
 function ClientCustomChange() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([
     {
       id:1,
@@ -35,15 +32,10 @@ function ClientCustomChange() {
 
   const handleEditRow = (idx) => {
     setRowToEdit(idx);
-
-    setModalOpen(true);
+    setOpen(true);
+   
   };
-  // const handleEditRow2 = (idx) => {
-  //   setRowToEdit(idx);
-
-  //   setModalOpen(true);
-  // };
-
+  
   const handleSubmit = (newRow) => {
     rowToEdit === null
       ? setRows([...rows, newRow])
@@ -57,32 +49,22 @@ function ClientCustomChange() {
   };
 
   return (
-    <div>
+    <Card>
       <ClientTable rows={rows} deleteRow={handleDeleteRow} editRow={handleEditRow} />
-      <button onClick={() => setModalOpen(true)} className="btn">
+      
+      <Button style={{marginTop:'20px'}}size="1.3rem" type="button" variant="contained" color="secondary"   onClick={() => setOpen(true)}>
         Add
-      </button>
-      <Button  style={{marginTop:'20px'}}size="1.3rem" type="button" variant="contained" color="secondary" onClick={() => setModalOpen(true)}>
-            Add
-          </Button>
-      <button onClick={() => setOpen(true)} className="btn">
-        Add2
-      </button>
+      </Button >
       
-      <Modal2 open={open} setOpen={setOpen}/>
-    
-      {modalOpen && (
-        <Modal
-          closeModal={() => {
-            setModalOpen(false);
-            setRowToEdit(null);
-          }}
-          onSubmit={handleSubmit}
-          defaultValue={rowToEdit !== null && rows[rowToEdit]}
-        />
-      )}
-      
-    </div>
+      <Modal open={open}
+        closeModal={() => {
+        setOpen(false);
+        setRowToEdit(null);
+      }}
+      onSubmit={handleSubmit}
+      defaultValue={rowToEdit !== null && rows[rowToEdit]}/>
+   
+    </Card>
   );
 }
 

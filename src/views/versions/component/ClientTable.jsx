@@ -1,8 +1,5 @@
 import React from "react";
 // import Table from "ui-component/Table.js";
-// import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
-// import Button from '@mui/material/Button';
-// import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import Table from '@mui/material/Table';
@@ -11,6 +8,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Box from '@mui/material/Box';
 // import { number } from "prop-types";
 
 export const ClientTable = ({ rows, deleteRow, editRow }) => {
@@ -124,25 +122,21 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
            
             return (
               <TableRow key={idx}>
-                <TableCell className="fit">
-                  <span className="actions">
-                    <EditIcon
-                        className="edit-btn"
-                        onClick={() => editRow(idx)}
-                    />
-                    <DeleteIcon
-                      className="delete-btn"
-                      onClick={() => deleteRow(idx)}
-                    />                    
-                  </span>
+                <TableCell>
+                <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      color: 'text.secondary',
+                      }}
+                  >
+                    <EditIcon onClick={() => editRow(idx)}/>
+                    <DeleteIcon onClick={() => deleteRow(idx)}/>                    
+                  </Box>
                 </TableCell>
                 <TableCell>{row.featurename}</TableCell>
-                <TableCell className="expand">{row.description}</TableCell>
-                <TableCell>
-                  <span>
-                    {row.dependency}
-                  </span>
-                </TableCell>
+                <TableCell>{row.description}</TableCell>
+                <TableCell>{row.dependency}</TableCell>
                 <TableCell >{row.dependencyfeaturename}</TableCell>
                 <TableCell >{row.phase}</TableCell>
                 <TableCell>{row.specificrequirement}</TableCell>

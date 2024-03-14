@@ -1,0 +1,198 @@
+import React, { useState }  from 'react';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { Card } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+function createData(phase, activityDeliverable, type, depend, owner,configure,clientComplexity,baseEffortHours,pendingFeatureBuildHours,originalEstimatedHours,comments) {
+    return { phase, activityDeliverable, type, depend, owner,configure,clientComplexity,baseEffortHours,pendingFeatureBuildHours,originalEstimatedHours,comments };
+  }
+  
+  const rows = [
+    createData('D1.1', "Set up project tracking (Epicor/NetSuite) ","D", "", "Pgm Mgr"),
+    createData('D1.2',"Create shared project area and project documentation folders", "D", "", "Pgm Mgr"),
+    createData('D1.3', "Draft initial Configuration Checklist", "D", "", "Pgm Mgr", "", "", "", "", "","Pgm Mgr drafts prior to kickoff, based on presale info, for review by team (and IT BA in particular)"),
+    
+  ];
+
+export default function DetailedScheduleTask() {
+    const [formState, setFormState] = useState(
+       {
+          instanceType: 'NA',
+          programType: 'NA',
+          programFeature: 'NA',
+          enableGamification:'No',
+          enableLearnEarn:'No',
+          enableSSO:'No',
+          enableSSNVault:'No',
+          dataMigration:'No',
+          
+        }
+      );
+
+  const handleChange = (e) => {
+    setFormState({ ...formState, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <Card>
+        <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="instance-type-label">Instance Type</InputLabel>
+        <Select
+          labelId="instance-type-label"
+          id="instance-type"
+          name="instanceType"
+          value={formState.instanceType}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Multi-tenant'}>Multi-tenant</MenuItem>
+          <MenuItem value={'Stand-Alone'}>Stand-Alone</MenuItem>
+          <MenuItem value={'NA'}>NA</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="program-type-label">Program Type (Points/Dollar)</InputLabel>
+        <Select
+          labelId="program-type-label"
+          id="program-type"
+          name="programType"
+          value={formState.programType}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Dollars'}>Dollars</MenuItem>
+          <MenuItem value={'Points'}>Points</MenuItem>
+          <MenuItem value={'NA'}>NA</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="program-feature-label">Program Feature(Sales Incentive/Recognition/Both)</InputLabel>
+        <Select
+          labelId="program-feature-label"
+          id="program-feature"
+          name="programFeature"
+          value={formState.programFeature}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Sales Incentive'}>Sales Incentive</MenuItem>
+          <MenuItem value={'Recognition'}>Recognition</MenuItem>
+          <MenuItem value={'Both'}>Both</MenuItem>
+          <MenuItem value={'NA'}>NA</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="enable-gamification-label">Enable Gamification</InputLabel>
+        <Select
+          labelId="enable-gamification-label"
+          id="enable-gamification"
+          name="enableGamification"
+          value={formState.enableGamification}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Yes'}>Yes</MenuItem>
+          <MenuItem value={'No'}>No</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="enable-learn-earn-label">Enable Learn n Earn</InputLabel>
+        <Select
+          labelId="enable-learn-earn-label"
+          id="enable-learn-earn"
+          name="enableLearnEarn"
+          value={formState.enableLearnEarn}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Yes'}>Yes</MenuItem>
+          <MenuItem value={'No'}>No</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="enable-sso-label">Enable SSO</InputLabel>
+        <Select
+          labelId="enable-sso-label"
+          id="enable-sso"
+          name="enableSSO"
+          value={formState.enableSSO}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Yes'}>Yes</MenuItem>
+          <MenuItem value={'No'}>No</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="enable-ssn-vault-label">SSN Vault</InputLabel>
+        <Select
+          labelId="enable-ssn-vault-label"
+          id="enable-ssn-vault"
+          name="enableSSNVault"
+          value={formState.enableSSNVault}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Yes'}>Yes</MenuItem>
+          <MenuItem value={'No'}>No</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+        <InputLabel id="enable-data-migration-label">Data Migration Needed</InputLabel>
+        <Select
+          labelId="enable-data-migration-label"
+          id="enable-data-migration"
+          name="dataMigration"
+          value={formState.dataMigration}
+          onChange={handleChange}
+        >          
+          <MenuItem value={'Yes'}>Yes</MenuItem>
+          <MenuItem value={'No'}>No</MenuItem>
+        </Select>
+      </FormControl>
+      <TableContainer >
+      <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead >
+          <TableRow>
+            {/* <TableCell>#</TableCell> */}
+            <TableCell >Phase</TableCell>
+            <TableCell align="center" sx={{minWidth: 340 }} >Activity/Deliverable</TableCell>
+            <TableCell >Type</TableCell>
+            <TableCell >Depend</TableCell>
+            <TableCell >Owner</TableCell>
+            <TableCell >Configure/ Build Work Type</TableCell>
+            <TableCell >Client Complexity</TableCell>
+            <TableCell >Base Effort Hours</TableCell>
+            <TableCell >Pending Feature Build Hours</TableCell>
+            <TableCell >Original Estimated Hours</TableCell>
+            <TableCell  align="center" sx={{ minWidth: 300}}>Comments</TableCell>
+           
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow
+              key={row.idx}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              
+              <TableCell align="right">{row.phase}</TableCell>
+              <TableCell align="right">{row.activityDeliverable}</TableCell>
+              <TableCell align="right">{row.type}</TableCell>
+              <TableCell align="right">{row.depend}</TableCell>
+              <TableCell align="right">{row.owner}</TableCell>
+              <TableCell align="right">{row.configure}</TableCell>
+              <TableCell align="right">{row.clientComplexity}</TableCell>
+              <TableCell align="right">{row.baseEffortHours}</TableCell>
+              <TableCell align="right">{row.pendingFeatureBuildHours}</TableCell>
+              <TableCell align="right">{row.originalEstimatedHours}</TableCell>
+              <TableCell align="right">{row.comments}</TableCell>
+             
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </Card>
+  );
+}
