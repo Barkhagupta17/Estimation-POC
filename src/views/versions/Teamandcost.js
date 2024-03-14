@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Stack, Box, Button } from '@mui/material';
-// import Table from "ui-component/Table.js";
+import { Stack, Box, Button, Typography, Grid } from '@mui/material';
 
 export default function BasicRowEditingGrid() {
   const column = React.useMemo(() => columns.map((col) => (col.field ? { ...col, sortable: false } : col)), [columns]);
   return (
-    <Stack spacing={2} sx={{ width: '100%' }} style={{ height: 450 }}>
-      <Box sx={{ height: 350, width: '100%' }}>
+    <Stack spacing={2} sx={{ width: '100%' }} style={{ height: 750 }}>
+      <Box sx={{ height: 450, width: '100%' }}>
         <h4>Client Customization Cost</h4>
         <DataGrid
           disableColumnMenu
@@ -24,30 +23,30 @@ export default function BasicRowEditingGrid() {
             }
           }}
         />
+        <Grid container spacing={2} style={{ marginBottom: '20px' }}>
+          <Grid item xs={5}>
+            <Typography variant="h4" color="">
+              Total
+            </Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <Typography variant="h4" color="">
+              {`${getCostHrRateTotal()}`}
+            </Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <Typography variant="h4" color="">
+              {` ${getCostTotal()}`}
+            </Typography>
+          </Grid>
+        </Grid>
         <Button size="1.3rem" type="button" variant="contained" color="secondary">
           Save
         </Button>
       </Box>
     </Stack>
-    // <Stack spacing={2} sx={{ width: '100%' }}>
-    //   <Box sx={{ height: 350, width: '100%' }}>
-    // <>
-    //   <h4>Client Customization Cost</h4>
-    //   <Table rows={rows} columns={columns}
-    //     // initialState={{
-    //     //     aggregation: {
-    //     //       model: {
-    //     //         effort: 'sum',
-    //     //       },
-    //     //     },
-    //     //   }}
-    //   />
-    //   </>
-    // </Box>
-    // </Stack>
   );
 }
-
 const columns = [
   { field: 'role', headerName: 'Role', width: 180, editable: true },
   {
@@ -101,7 +100,7 @@ const rows = [
     FTE: 0,
     effort: 0,
     costhrrate: '$ ' + 74.0,
-    cost: '$ ' + '-',
+    cost: '',
     comments: ''
   },
 
@@ -111,7 +110,7 @@ const rows = [
     FTE: 0,
     effort: 0,
     costhrrate: '$ ' + 111.0,
-    cost: '$ ' + '-',
+    cost: '',
     comments: ''
   },
 
@@ -121,7 +120,7 @@ const rows = [
     FTE: 0,
     effort: 0,
     costhrrate: '$ ' + 100.8,
-    cost: '$ ' + '-',
+    cost: '',
     comments: ''
   },
 
@@ -131,7 +130,7 @@ const rows = [
     FTE: 0,
     effort: 0,
     costhrrate: '$ ' + 92.0,
-    cost: '$ ' + '-',
+    cost: '',
     comments: 'Component Library Needed?'
   },
 
@@ -155,3 +154,9 @@ const rows = [
     comments: ''
   }
 ];
+const getCostTotal = () => {
+  return rows.reduce((total, value) => total + Number(String(value.cost).replace('$ ', '')), 0);
+};
+const getCostHrRateTotal = () => {
+  return rows.reduce((total, value) => total + Number(String(value.costhrrate).replace('$ ', '')), 0);
+};
