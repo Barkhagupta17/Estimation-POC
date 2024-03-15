@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
-import BasicRowEditingGrid from './Teamandcost';
+import Teamandcost from './Teamandcost';
 
 // project imports
 import { Card } from '@mui/material';
@@ -43,7 +43,7 @@ const Version = () => {
               <ClientCustomChange />
             </TabPanel>
             <TabPanel value="Team-&-Cost">
-              <BasicRowEditingGrid />
+              <Teamandcost />
             </TabPanel>
 
             <TabPanel value="Annual-Support-Cost">
