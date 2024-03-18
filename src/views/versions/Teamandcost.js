@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
-import { Stack, Box, Button} from '@mui/material';
+import { Stack, Box, Button } from '@mui/material';
 import { randomId } from '@mui/x-data-grid-generator';
-import {SumofCoulmn, currencyFormatter } from './Constfunctions';
+import { SumofCoulmn, currencyFormatter } from './Constfunctions';
 
 export default function Teamandcost() {
   const column = React.useMemo(() => columns.map((col) => (col.field ? { ...col, sortable: false } : col)), [columns]);
@@ -15,28 +15,19 @@ export default function Teamandcost() {
     FTE: '',
     effort: SumofCoulmn(row, 'effort'),
     costhrrate: '',
-    cost: SumofCoulmn(row, 'cost'),
-    
-  }
+    cost: SumofCoulmn(row, 'cost')
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     setRows([...row, newrow]);
-  },[]);
-  
+  }, []);
+
   return (
     <Stack spacing={2} sx={{ width: '100%' }} style={{ height: '100%' }}>
       <Box sx={{ height: 'auto', width: '100%' }}>
         <h4>Client Customization Cost</h4>
-        <DataGrid
-          disableColumnMenu
-          hideFooter
-          editMode="row"
-          rows={row}
-          columns={column}
-          style={{ marginBottom: '20px' }}
-         
-        />
-        
+        <DataGrid disableColumnMenu hideFooter editMode="row" rows={row} columns={column} style={{ marginBottom: '20px' }} />
+
         <Button size="1.3rem" type="button" variant="contained" color="secondary">
           Save
         </Button>
@@ -45,7 +36,7 @@ export default function Teamandcost() {
   );
 }
 const columns = [
-  { field: 'role', headerName: 'Role', width: 300, editable: true, align: 'left', },
+  { field: 'role', headerName: 'Role', width: 300, editable: true, align: 'left' },
   {
     field: 'FTE',
     headerName: 'FTE',
@@ -59,45 +50,51 @@ const columns = [
     headerName: 'Effort',
     type: 'number',
     align: 'left',
+    headerAlign: 'left',
     editable: false,
-    valueFormatter: ( params ) => {
+    valueFormatter: (params) => {
       if (!params.value) {
         return params.value;
       }
       return currencyFormatter.format(params.value);
-    },
+    }
   },
   {
     field: 'costhrrate',
     headerName: 'Cost Hr Rate',
     type: 'number',
     align: 'left',
+    headerAlign: 'left',
     editable: false,
-    valueFormatter: ( params ) => {
+    valueFormatter: (params) => {
       if (!params.value) {
         return params.value;
       }
       return currencyFormatter.format(params.value);
-    },
+    }
   },
   {
     field: 'cost',
     headerName: 'Cost',
     type: 'number',
     align: 'left',
+    headerAlign: 'left',
     editable: false,
-    valueFormatter: ( params ) => {
+    valueGetter: (params) => params.row.FTE + params.row.effort,
+
+    valueFormatter: (params) => {
       if (!params.value) {
         return params.value;
       }
       return currencyFormatter.format(params.value);
-    },
+    }
   },
   {
     field: 'comments',
     headerName: 'Comments',
     width: 180,
     align: 'left',
+    headerAlign: 'left',
     editable: true
   }
 ];
@@ -109,7 +106,7 @@ const rows = [
     FTE: 0.5,
     effort: 40,
     costhrrate: 91.0,
-    cost: 3640,
+    // cost: 3640,
     comments: ''
   },
 
@@ -117,9 +114,9 @@ const rows = [
     id: 2,
     role: 'Digital Business Analyst ',
     FTE: 0,
-    effort: 0,
+    effort: 2,
     costhrrate: 74.0,
-    cost: 0,
+    // cost: 0,
     comments: ''
   },
 
@@ -129,7 +126,7 @@ const rows = [
     FTE: 0,
     effort: 0,
     costhrrate: 111.0,
-    cost: 0,
+    // cost: 0,
     comments: ''
   },
 
@@ -139,7 +136,7 @@ const rows = [
     FTE: 0,
     effort: 0,
     costhrrate: 100.8,
-    cost: 0,
+    // cost: 0,
     comments: ''
   },
 
@@ -147,9 +144,9 @@ const rows = [
     id: 5,
     role: 'Digital User Experience Architect',
     FTE: 0,
-    effort: 0,
+    effort: 10,
     costhrrate: 92.0,
-    cost: 0,
+    // cost: 0,
     comments: 'Component Library Needed?'
   },
 
@@ -159,7 +156,7 @@ const rows = [
     FTE: 2,
     effort: 160,
     costhrrate: 42.21,
-    cost: 6750,
+    // cost: 6750,
     comments: ''
   },
 
@@ -169,8 +166,7 @@ const rows = [
     FTE: 1,
     effort: 80,
     costhrrate: 42.21,
-    cost: 3380,
+    // cost: 3380,
     comments: ''
   }
 ];
-
