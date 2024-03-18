@@ -12,6 +12,7 @@ import { Card } from '@mui/material';
 import ClientCustomChange from './ClientCustomChange';
 import AnualSupportCost from './AnualSupportCost';
 import DetailedScheduleTask from './DetailedScheduleTask';
+import AssumptionQuestion from './AssumptionQuestion';
 // import MainCard from 'ui-component/cards/MainCard';
 
 const Version = () => {
@@ -27,6 +28,8 @@ const Version = () => {
             <Tabs
               value={value}
               onChange={handleChange}
+              variant="scrollable"
+              scrollButtons="auto"
               textColor="secondary"
               indicatorColor="secondary"
               aria-label="secondary tabs example"
@@ -50,7 +53,9 @@ const Version = () => {
               <AnualSupportCost />
             </TabPanel>
 
-            <TabPanel value="Assumptions-&-Questions">Item Three</TabPanel>
+            <TabPanel value="Assumptions-&-Questions">
+              <AssumptionQuestion/>
+            </TabPanel>
           </TabContext>
         </Box>
       
