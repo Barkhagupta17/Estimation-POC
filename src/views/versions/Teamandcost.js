@@ -1,40 +1,9 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Stack, Box, Button } from '@mui/material';
 import { randomId } from '@mui/x-data-grid-generator';
 import { SumofCoulmn, currencyFormatter } from './Constfunctions';
-
-export default function Teamandcost() {
-  const column = React.useMemo(() => columns.map((col) => (col.field ? { ...col, sortable: false } : col)), [columns]);
-  const [row, setRows] = useState(rows);
-
-  const newrow = {
-    id: randomId(),
-    role: 'Total',
-    FTE: '',
-    effort: SumofCoulmn(row, 'effort'),
-    costhrrate: '',
-    cost: SumofCoulmn(row, 'cost')
-  };
-
-  useEffect(() => {
-    setRows([...row, newrow]);
-  }, []);
-
-  return (
-    <Stack spacing={2} sx={{ width: '100%' }} style={{ height: '100%' }}>
-      <Box sx={{ height: 'auto', width: '100%' }}>
-        <h4>Client Customization Cost</h4>
-        <DataGrid disableColumnMenu hideFooter editMode="row" rows={row} columns={column} style={{ marginBottom: '20px' }} />
-
-        <Button size="1.3rem" type="button" variant="contained" color="secondary">
-          Save
-        </Button>
-      </Box>
-    </Stack>
-  );
-}
 const columns = [
   { field: 'role', headerName: 'Role', width: 300, editable: true, align: 'left' },
   {
@@ -170,3 +139,99 @@ const rows = [
     comments: ''
   }
 ];
+
+// const columns = [
+//   {
+//     field: 'Col1',
+//     headerName: 'Col1',
+//     flex: 1.0,
+//     disableClickEventBubbling: true,
+//     sortable: false,
+//     disableColumnMenu: true
+//   },
+//   {
+//     field: 'Col2',
+//     headerName: 'Col2',
+//     flex: 1.0,
+//     disableClickEventBubbling: true,
+//     sortable: false,
+//     disableColumnMenu: true,
+//     renderCell: (params) => {
+//       return (
+//         <TextField
+//           type="date"
+//           defaultValue=""
+//           InputLabelProps={{ shrink: true }}
+//           onChange={(e) => params.api.updateRows([{ ...params.row, Col2: e.target.value }])}
+//         />
+//       );
+//     }
+//   },
+//   {
+//     field: 'Col3',
+//     headerName: 'Col3',
+//     flex: 1.0,
+//     disableClickEventBubbling: true,
+//     sortable: false,
+//     disableColumnMenu: true,
+//     renderCell: (params) => <TextField onChange={(e) => params.api.updateRows([{ ...params.row, Col3: e.target.value }])} />
+//   }
+// ];
+
+// const rows = [
+//   { id: 1, Col1: 'col1 data', Col2: null, Col3: null },
+//   { id: 2, Col1: 'col2 data', Col2: null, Col3: null },
+//   { id: 3, Col1: 'col3 data', Col2: null, Col3: null }
+// ];
+
+function useApiRef() {
+  const apiRef = useRef(null);
+  const _columns = useMemo(
+    () =>
+      columns.concat({
+        // field: '__HIDDEN__',
+        width: 0,
+        renderCell: (params) => {
+          apiRef.current = params.api;
+          return null;
+        }
+      }),
+    [columns]
+  );
+
+  return { apiRef, columns: _columns };
+}
+export default function Teamandcost() {
+  const { apiRef, columns } = useApiRef();
+  const handleClickButton = () => {
+    console.log(apiRef.current.getRowModels());
+  };
+  const column = React.useMemo(() => columns.map((col) => (col.field ? { ...col, sortable: false } : col)), [columns]);
+  const [row, setRows] = useState(rows);
+
+  const newrow = {
+    id: randomId(),
+    role: 'Total',
+    FTE: '',
+    effort: SumofCoulmn(row, 'effort'),
+    costhrrate: '',
+    cost: SumofCoulmn(row, 'cost')
+  };
+
+  useEffect(() => {
+    setRows([...row, newrow]);
+  }, []);
+
+  return (
+    <Stack spacing={2} sx={{ width: '100%' }} style={{ height: '100%' }}>
+      <Box sx={{ height: 'auto', width: '100%' }}>
+        <h4>Client Customization Cost</h4>
+        <DataGrid disableColumnMenu hideFooter editMode="row" rows={row} columns={column} style={{ marginBottom: '20px' }} />
+
+        <Button size="1.3rem" type="button" variant="contained" color="secondary" onClick={handleClickButton}>
+          Save
+        </Button>
+      </Box>
+    </Stack>
+  );
+}
