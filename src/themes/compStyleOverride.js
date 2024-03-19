@@ -9,6 +9,31 @@ export default function componentStyleOverrides(theme) {
         }
       }
     },
+    MuiTableContainer:{
+      styleOverrides:{
+        root:{
+          border:'1px solid #ddd',
+          borderRadius:'5px'
+        }
+      }
+    },
+    MuiTableCell:{
+      styleOverrides:{
+        head:{
+          verticalAlign:'bottom',
+        },
+        root:{
+          padding:'10px',
+        },
+        footer:{
+          border:'0px',
+          padding: '7px',
+          fontSize: '0.85rem',
+          color: '#364152',
+          fontWeight: '500'
+        }
+      }
+    },
     MuiPaper: {
       defaultProps: {
         elevation: 0
@@ -186,6 +211,16 @@ export default function componentStyleOverrides(theme) {
           background: theme.colors?.grey700
         }
       }
-    }
+    },
+    MuiInputLabel:{
+      styleOverrides:{
+        root:{
+          '&.Mui-disabled':{
+            color: 'rgba(0, 0, 0, 0.88)'
+          }
+        }
+      }
+    },
+   
   };
 }

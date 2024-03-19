@@ -46,10 +46,14 @@ const MainRoutes = {
       path: 'sample-page',
       element: <SamplePage />
     },
+    {
+      path: '/estimation/v1/edit',
+      element: <Version view={false}/>
+    },
     
     {
-      path: '/estimation/v1',
-      element: <Version />
+      path: '/estimation/v1/view',
+      element: <Version view={true}/>
     }
   ]
 };

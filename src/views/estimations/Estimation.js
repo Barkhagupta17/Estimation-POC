@@ -78,14 +78,14 @@ const Estimation = () => {
                       }
                     }}
                   >
-                    <Link to={'/estimation/v1'}>
+                    <Link to={'/estimation/v1/view'}>
                       <VisibilityIcon />
                     </Link>
                     <Divider orientation="vertical" variant="middle" flexItem />
                     {row.status === 'Draft' ? (
                       <>
                         <Divider orientation="vertical" variant="middle" flexItem />
-                        <Link to={'/estimation/v1'}>
+                        <Link to={'/estimation/v1/edit'}>
                           <EditIcon />
                         </Link>
                         <Divider orientation="vertical" variant="middle" flexItem />

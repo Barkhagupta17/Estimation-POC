@@ -9,112 +9,34 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
+import { TableFooter } from "@mui/material";
 // import { number } from "prop-types";
 
-export const ClientTable = ({ rows, deleteRow, editRow }) => {
-  // const columns=[
-  //   {
-  //     field: 'actions',
-  //     type: 'actions',
-  //     headerName: '',
-  //     width: 50,
-  //     cellClassName: 'actions',
-  //     getActions: ({id}) => {
-                   
-  //         return [
-  //           <span className="actions" key={id}>
-  //           <EditIcon
-  //              onClick={() => editRow(id)}
-  //           />
-  //           <DeleteIcon
-  //             onClick={() => deleteRow(id)}
-  //           />                    
-  //         </span>
-  //         ];
-  //     },
-  // },
-  //     { field: 'featurename', 
-  //     headerName: 'Feature Name',
-  //     },
-  //     {
-  //       field: 'description',
-  //       headerName: 'Description',
-          
-  //       align: 'left',
-  //       headerAlign: 'left',
-  //     },
-  //     {
-  //       field: 'dependency',
-  //       headerName: 'Dependency? (Y/N)',    
-  //       editable: false,
-  //     },
-  //     {
-  //       field: 'dependencyfeaturename',
-  //       headerName: 'Dependency (Feature Name)',
-      
-  //     },
-  //     { field: 'phase', 
-  //     headerName: 'Phase',
-  //     },
-  //     { field: 'specificrequirement', 
-  //     headerName: 'Specific Requirement in RFP? (Y/N)',
-  //     },
-  //     { field: 'fixedcustom', 
-  //     headerName: 'Fixed /Custom',
-  //     },
-  //     { field: 'developmentowner', 
-  //     headerName: 'Development Owner',
-  //     },
-  //     { field: 'productmanager', 
-  //     headerName: 'Product Manager',
-  //     },
-  //     { field: 'storypoints', 
-  //     headerName: 'Story Points',
-  //     type: number,
-  //     },
-  //     { field: 'estimateconfidencescore', 
-  //     headerName: 'Estimate Confidence Score',
-  //     },
-  //     { field: 'estimatedby', 
-  //     headerName: 'Estimated By',
-  //     },
-  //     { field: 'timeline', 
-  //     headerName: 'Timeline',
-  //     },
-  //     { field: 'urltoADOTicket', 
-  //     headerName: 'URL to ADO Ticket',
-  //     },
-  //     { field: 'inPxFRsheet', 
-  //     headerName: 'In Px F&R sheet?',
-  //     },
-  //     { field: 'commentsassumptions', 
-  //     headerName: 'Comments/Assumptions',
-  //     },
-    
-  // ]
+export const ClientTable = ({view, rows, deleteRow, editRow,clientDelivery,productRoadmap }) => {
+
   return (
   
     <TableContainer >
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead >
           <TableRow>
-           <TableCell ></TableCell>
-           <TableCell align="center" sx={{minWidth: 140 }}>Feature Name</TableCell>
-           <TableCell align="center" sx={{minWidth: 340 }}>Description</TableCell>
-           <TableCell align="center">Dependency? (Y/N)</TableCell>
-           <TableCell align="center">Dependency (Feature Name)</TableCell>
-           <TableCell align="center">Phase</TableCell>
-           <TableCell align="center">Specific Requirement in RFP? (Y/N)</TableCell>
-           <TableCell align="center">Fixed /Custom</TableCell>
-           <TableCell align="center">Development Owner</TableCell>
-           <TableCell align="center">Product Manager</TableCell>
-           <TableCell align="center">Story Points</TableCell>
-           <TableCell align="center">Estimate Confidence Score</TableCell>
-           <TableCell align="center">Estimated By</TableCell>
-           <TableCell align="center">Timeline</TableCell>
-           <TableCell align="center" sx={{minWidth: 240 }}>URL to ADO Ticket</TableCell>
-           <TableCell align="center">In Px F&R sheet?</TableCell>
-           <TableCell align="center" sx={{minWidth: 240 }}>Comments/Assumptions</TableCell>
+           <TableCell sx={{display: view?'none':'table-cell'}}></TableCell>
+           <TableCell sx={{minWidth: 140 }}>Feature Name</TableCell>
+           <TableCell sx={{minWidth: 340 }}>Description</TableCell>
+           <TableCell>Dependency? (Y/N)</TableCell>
+           <TableCell>Dependency (Feature Name)</TableCell>
+           <TableCell>Phase</TableCell>
+           <TableCell>Specific Requirement in RFP? (Y/N)</TableCell>
+           <TableCell>Fixed /Custom</TableCell>
+           <TableCell>Development Owner</TableCell>
+           <TableCell>Product Manager</TableCell>
+           <TableCell>Story Points</TableCell>
+           <TableCell>Estimate Confidence Score</TableCell>
+           <TableCell>Estimated By</TableCell>
+           <TableCell>Timeline</TableCell>
+           <TableCell sx={{minWidth: 240 }}>URL to ADO Ticket</TableCell>
+           <TableCell>In Px F&R sheet?</TableCell>
+           <TableCell sx={{minWidth: 240 }}>Comments/Assumptions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -122,7 +44,7 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
            
             return (
               <TableRow key={idx}>
-                <TableCell>
+                <TableCell sx={{display: view?'none':'table-cell'}}>
                 <Box
                     sx={{
                       display: 'flex',
@@ -154,7 +76,25 @@ export const ClientTable = ({ rows, deleteRow, editRow }) => {
               </TableRow>
             );
           })}
-        </TableBody>
+       </TableBody>
+
+        <TableFooter>
+        <TableRow>
+            <TableCell colSpan={9} ></TableCell>
+            <TableCell >Total</TableCell>
+            <TableCell>{productRoadmap + clientDelivery}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell colSpan={8} ></TableCell>
+            <TableCell colSpan={2} align="center">Product Roadmap</TableCell>
+            <TableCell>{productRoadmap}</TableCell>
+        </TableRow>
+        <TableRow>
+            <TableCell colSpan={8} ></TableCell>
+            <TableCell colSpan={2} align="center">Client Delivery</TableCell>
+            <TableCell>{clientDelivery}</TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
       {/* <Table rows={rows} columns={columns}>
 

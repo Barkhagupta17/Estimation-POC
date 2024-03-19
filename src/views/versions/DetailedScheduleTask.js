@@ -3,7 +3,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Card } from '@mui/material';
+import { Box , Button } from '@mui/material';
 // import { DataGrid } from '@mui/x-data-grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -22,7 +22,9 @@ function createData(phase, activityDeliverable, type, depend, owner,configure,cl
     
   ];
 
-export default function DetailedScheduleTask() {
+export default function DetailedScheduleTask({view}) {
+  console.log(view);
+  console.log(view?'hidden':'visible');
     const [formState, setFormState] = useState(
        {
           instanceType: 'NA',
@@ -40,11 +42,11 @@ export default function DetailedScheduleTask() {
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
-
+ 
  
   return (
-    <Card>
-        <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+    <Box>
+        <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="instance-type-label">Instance Type</InputLabel>
         <Select
           labelId="instance-type-label"
@@ -58,7 +60,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'NA'}>NA</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="program-type-label">Program Type (Points/Dollar)</InputLabel>
         <Select
           labelId="program-type-label"
@@ -72,7 +74,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'NA'}>NA</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="program-feature-label">Program Feature(Sales Incentive/Recognition/Both)</InputLabel>
         <Select
           labelId="program-feature-label"
@@ -87,7 +89,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'NA'}>NA</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="enable-gamification-label">Enable Gamification</InputLabel>
         <Select
           labelId="enable-gamification-label"
@@ -100,7 +102,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="enable-learn-earn-label">Enable Learn n Earn</InputLabel>
         <Select
           labelId="enable-learn-earn-label"
@@ -113,7 +115,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="enable-sso-label">Enable SSO</InputLabel>
         <Select
           labelId="enable-sso-label"
@@ -126,7 +128,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="enable-ssn-vault-label">SSN Vault</InputLabel>
         <Select
           labelId="enable-ssn-vault-label"
@@ -139,7 +141,7 @@ export default function DetailedScheduleTask() {
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="enable-data-migration-label">Data Migration Needed</InputLabel>
         <Select
           labelId="enable-data-migration-label"
@@ -153,13 +155,13 @@ export default function DetailedScheduleTask() {
         </Select>
       </FormControl>
 
-      <TableContainer >
+      <TableContainer sx={{marginTop:'20px'}} >
       <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead >
           <TableRow>
             
             <TableCell >Phase</TableCell>
-            <TableCell align="center" sx={{minWidth: 340 }} >Activity/Deliverable</TableCell>
+            <TableCell sx={{minWidth: 340 }} >Activity/Deliverable</TableCell>
             <TableCell >Type</TableCell>
             <TableCell >Depend</TableCell>
             <TableCell >Owner</TableCell>
@@ -168,7 +170,7 @@ export default function DetailedScheduleTask() {
             <TableCell >Base Effort Hours</TableCell>
             <TableCell >Pending Feature Build Hours</TableCell>
             <TableCell >Original Estimated Hours</TableCell>
-            <TableCell  align="center" sx={{ minWidth: 300}}>Comments</TableCell>
+            <TableCell  sx={{ minWidth: 300}}>Comments</TableCell>
            
           </TableRow>
         </TableHead>
@@ -179,23 +181,26 @@ export default function DetailedScheduleTask() {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               
-              <TableCell align="right">{row.phase}</TableCell>
-              <TableCell align="right">{row.activityDeliverable}</TableCell>
-              <TableCell align="right">{row.type}</TableCell>
-              <TableCell align="right">{row.depend}</TableCell>
-              <TableCell align="right">{row.owner}</TableCell>
-              <TableCell align="right">{row.configure}</TableCell>
-              <TableCell align="right">{row.clientComplexity}</TableCell>
-              <TableCell align="right">{row.baseEffortHours}</TableCell>
-              <TableCell align="right">{row.pendingFeatureBuildHours}</TableCell>
-              <TableCell align="right">{row.originalEstimatedHours}</TableCell>
-              <TableCell align="right">{row.comments}</TableCell>
+              <TableCell>{row.phase}</TableCell>
+              <TableCell>{row.activityDeliverable}</TableCell>
+              <TableCell>{row.type}</TableCell>
+              <TableCell>{row.depend}</TableCell>
+              <TableCell>{row.owner}</TableCell>
+              <TableCell>{row.configure}</TableCell>
+              <TableCell>{row.clientComplexity}</TableCell>
+              <TableCell>{row.baseEffortHours}</TableCell>
+              <TableCell>{row.pendingFeatureBuildHours}</TableCell>
+              <TableCell>{row.originalEstimatedHours}</TableCell>
+              <TableCell>{row.comments}</TableCell>
              
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    <Button size="1.3rem" type="button" variant="contained" color="secondary"  sx={{marginTop:'10px',visibility: view?'hidden':'visible'}}>
+          Save
+        </Button>
     {/* <Box sx={{ height: 350, width: '100%' }}>
       <DataGrid  sx={{
             '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '8px' },
@@ -217,7 +222,7 @@ export default function DetailedScheduleTask() {
           }}
         />
         </Box>*/}
-    </Card>
+    </Box>
   );
 }
 

@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Button } from '@mui/material';
 import { TableComponent } from "./component/TableComponent";
 import {AssumptionQuestionModal} from "./component/AssumptionQuestionModal";
-import { Card } from '@mui/material';
+import { Box } from '@mui/material';
 
-function Assumption() {
+function Assumption({view}) {
   const [open, setOpen] = useState(false);
   const [rows, setRows] = useState([
     {
@@ -48,10 +48,10 @@ function Assumption() {
   };
 
   return (
-    <Card>
-      <TableComponent rows={rows} columns={columns} deleteRow={handleDeleteRow} editRow={handleEditRow} />
+    <Box>
+      <TableComponent view={view} rows={rows} columns={columns} deleteRow={handleDeleteRow} editRow={handleEditRow} />
       
-      <Button style={{marginTop:'20px'}}size="1.3rem" type="button" variant="contained" color="secondary"   onClick={() => setOpen(true)}>
+      <Button style={{marginTop:'20px',visibility:view?'hidden':'visible'}}size="1.3rem" type="button" variant="contained" color="secondary"   onClick={() => setOpen(true)}>
         Add
       </Button >
       
@@ -63,7 +63,7 @@ function Assumption() {
       onSubmit={handleSubmit}
       defaultValue={rowToEdit !== null && rows[rowToEdit]}/>
    
-    </Card>
+    </Box>
   );
 }
 

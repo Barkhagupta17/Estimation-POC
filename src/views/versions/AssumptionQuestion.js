@@ -7,7 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Assumption from './Assumption';
 import Question from './Question';
 
-export default function AssumptionQuestion() {
+export default function AssumptionQuestion({view}) {
     const [value, setValue] = React.useState('1');
 
     const handleChange = (event, newValue) => {
@@ -24,8 +24,8 @@ export default function AssumptionQuestion() {
               <Tab label="Questions" value="2" />
             </TabList>
           </Box>
-          <TabPanel value="1"><Assumption/></TabPanel>
-          <TabPanel value="2"><Question/></TabPanel>
+          <TabPanel value="1"><Assumption view={view}/></TabPanel>
+          <TabPanel value="2"><Question view={view}/></TabPanel>
         </TabContext>
       </Box>
     );

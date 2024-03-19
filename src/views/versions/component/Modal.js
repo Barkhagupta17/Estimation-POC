@@ -21,7 +21,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
   fixedcustom:"",
   developmentowner:"Client Delivery",
   productmanager:"",
-  storypoints:"0",
+  storypoints:0,
   estimateconfidencescore:"",
   estimatedby:"",
   timeline:"",

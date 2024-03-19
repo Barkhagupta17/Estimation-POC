@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Box from '@mui/material/Box';
 
 
-export const TableComponent = ({ rows,columns, deleteRow, editRow }) => {
+export const TableComponent = ({view, rows,columns, deleteRow, editRow }) => {
    return (
   
     <TableContainer >
@@ -20,7 +20,7 @@ export const TableComponent = ({ rows,columns, deleteRow, editRow }) => {
             {columns.map((col,idx)=>{
               return(
               
-                 <TableCell key={idx} >{col}</TableCell>);
+                 <TableCell key={idx} sx={{display:view && idx==0?'none':'table-cell'}}>{col}</TableCell>);
             })}
            
           </TableRow>
@@ -30,7 +30,7 @@ export const TableComponent = ({ rows,columns, deleteRow, editRow }) => {
            
             return (
               <TableRow key={idx}>
-                <TableCell>
+                <TableCell sx={{display:view?'none':'table-cell'}}>
                 <Box
                     sx={{
                       display: 'flex',

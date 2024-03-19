@@ -15,7 +15,7 @@ import DetailedScheduleTask from './DetailedScheduleTask';
 import AssumptionQuestion from './AssumptionQuestion';
 // import MainCard from 'ui-component/cards/MainCard';
 
-const Version = () => {
+const Version = ({view}) => {
   const [value, setValue] = React.useState('Detailed Schedule & Tasks');
 
   const handleChange = (event, newValue) => {
@@ -41,20 +41,20 @@ const Version = () => {
               <Tab value="Annual-Support-Cost" label="Annual Support Cost" />
               <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab>
             </Tabs>
-            <TabPanel value="Detailed Schedule & Tasks"><DetailedScheduleTask/></TabPanel>
+            <TabPanel value="Detailed Schedule & Tasks"><DetailedScheduleTask view={view}/></TabPanel>
             <TabPanel value="Client-Custom-Change" style={{ height: '450' }}>
-              <ClientCustomChange />
+              <ClientCustomChange view={view}/>
             </TabPanel>
             <TabPanel value="Team-&-Cost">
-              <Teamandcost />
+              <Teamandcost view={view}/>
             </TabPanel>
 
             <TabPanel value="Annual-Support-Cost">
-              <AnualSupportCost />
+              <AnualSupportCost view={view}/>
             </TabPanel>
 
             <TabPanel value="Assumptions-&-Questions">
-              <AssumptionQuestion/>
+              <AssumptionQuestion view={view}/>
             </TabPanel>
           </TabContext>
         </Box>
