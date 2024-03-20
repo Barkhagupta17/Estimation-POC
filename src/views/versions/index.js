@@ -4,7 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabPanel from '@mui/lab/TabPanel';
 import TabContext from '@mui/lab/TabContext';
-import Teamandcost from './Teamandcost';
+// import Teamandcost from './Teamandcost';
 
 // project imports
 import { Card } from '@mui/material';
@@ -13,6 +13,7 @@ import ClientCustomChange from './ClientCustomChange';
 import AnualSupportCost from './AnualSupportCost';
 import DetailedScheduleTask from './DetailedScheduleTask';
 import AssumptionQuestion from './AssumptionQuestion';
+import Grid from './Grid';
 // import MainCard from 'ui-component/cards/MainCard';
 
 const Version = ({view}) => {
@@ -46,7 +47,8 @@ const Version = ({view}) => {
               <ClientCustomChange view={view}/>
             </TabPanel>
             <TabPanel value="Team-&-Cost">
-              <Teamandcost view={view}/>
+              {/* <Teamandcost view={view}/> */}
+              <Grid view={view}/>
             </TabPanel>
 
             <TabPanel value="Annual-Support-Cost">
