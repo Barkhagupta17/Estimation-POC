@@ -38,8 +38,8 @@ export const TableComponent = ({view, rows,columns, deleteRow, editRow }) => {
                       color: 'text.secondary',
                       }}
                   >
-                    <EditIcon onClick={() => editRow(idx)}/>
-                    <DeleteIcon onClick={() => deleteRow(idx)}/>                    
+                    <EditIcon onClick={() => editRow(idx)} style={{cursor:'pointer'}}/>
+                    <DeleteIcon onClick={() => deleteRow(idx)} style={{cursor:'pointer'}}/>                    
                   </Box>
                 </TableCell>
                

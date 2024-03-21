@@ -32,10 +32,8 @@ const Dashboard = () => {
     clientError: false,
     estimateError: false
   });
-  console.log(error);
+  // console.log(error);
 
-
-  // console.log(pages['children'][0].title);
 
   const handleOpenModal = () => {
     setOpenModal(true);

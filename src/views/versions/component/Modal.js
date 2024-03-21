@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/system';
+import { useMemo } from 'react';
 
 export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
   const initial={featurename: "",
@@ -33,12 +34,73 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
   useEffect(() => {
     const value=defaultValue || initial;
     setFormState(value);
-  }, [open]);
+  }, [open]); 
 
   const [formState, setFormState] = useState(initial);
+  
+
+  const [formError, setFormError] = useState({
+    featurename: false,
+    description: false,
+    dependency: false,
+    dependencyfeaturename:false,
+    phase:false,
+    specificrequirement:false,
+    fixedcustom:false,
+    developmentowner: false,
+    productmanager:false,
+    storypoints:false,
+    estimateconfidencescore:false,
+    estimatedby:false,
+    timeline:false,
+    urltoADOTicket:false,
+    inPxFRsheet:false,
+    commentsassumptions:false
+  })
+
   const handleChange = (e) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    setFormState({ ...formState, [e.target.name]: e.target.value.trim() });
+    if (e.target.value !== '' || e.target.value !== 0){
+      setFormError({...formError, [e.target.name] : false});
+    }
+    // disablAddBtn();
   };
+
+  const onBlurValidation = (e) =>{
+    if(e.target.value === '' || e.target.value === 0){
+      setFormError({...formError, [e.target.name] : true});
+    }
+  }
+
+  // const disablAddBtn = useMemo(
+  //   () => formState.featurename !== 0 || formState.dependency !== 0 ||
+  //   formState.featurename.length === 0 || formState.dependencyfeaturename.length === 0||
+  //   formState.phase.length === 0 || formState.specificrequirement.length === 0 ||
+  //   formState.fixedcustom.length === 0 || formState.developmentowner.length === 0 ||
+  //   formState.productmanager.length === 0 || formState.storypoints.length === 0 ||
+  //   formState.estimateconfidencescore.length === 0 || formState.estimatedby.length === 0 ||
+  //   formState.timeline.length === 0 || formState.urltoADOTicket.length === 0 ||
+  //   formState.inPxFRsheet.length === 0 || formState.commentsassumptions.length === 0
+    
+  //   ,   
+  //   [formState]
+  // )
+
+  // Validation on Save btn
+  const disablAddBtn = useMemo(
+    () => formState.featurename === '' || formState.dependency === '' ||
+    formState.featurename === '' || formState.dependencyfeaturename === '' ||
+    formState.phase === '' || formState.specificrequirement === '' ||
+    formState.fixedcustom === '' || formState.developmentowner === '' ||
+    formState.productmanager === '' || formState.storypoints === 0 || formState.storypoints === '' ||
+    formState.estimateconfidencescore  === '' || formState.estimatedby === '' ||
+    formState.timeline === '' || formState.urltoADOTicket === '' ||
+    formState.inPxFRsheet === '' || formState.commentsassumptions === ''
+    
+    ,   
+    [formState]
+  )
+  // console.log(disablAddBtn());
 
     return (
     <React.Fragment>
@@ -69,7 +131,10 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                   variant="filled"
                   name="featurename" 
                   onChange={handleChange}
-                  value={formState.featurename} />
+                  value={formState.featurename} 
+                  error = {formError.featurename}
+                  onBlur={onBlurValidation}
+                  />
 
                   <TextField sx={{ m: 1,gridColumn: '2 / span 2'}}
                     id="description"
@@ -80,9 +145,11 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                     name="description"
                     onChange={handleChange}
                     value={formState.description}
+                    error = {formError.description}
+                    onBlur={onBlurValidation}
                   />
 
-                  <FormControl variant="filled" sx={{ m: 1}}>
+                  <FormControl error = {formError.dependency} variant="filled" sx={{ m: 1}}>
                   <InputLabel  id="dependency-label">Dependency? (Y/N)</InputLabel>
                       <Select
                           labelId="dependency-label"
@@ -105,6 +172,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                        name="dependencyfeaturename"
                        onChange={handleChange}
                        value={formState.dependencyfeaturename}
+                       error = {formError.dependencyfeaturename}
                     />
 
                     <TextField 
@@ -115,9 +183,10 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="phase" 
                       onChange={handleChange} 
                       value={formState.phase}
+                      error = {formError.phase}
                     />
 
-                    <FormControl variant="filled" sx={{ m: 1}}>
+                    <FormControl error = {formError.specificrequirement} variant="filled" sx={{ m: 1}}>
                       <InputLabel  id="specificrequirement-label">Specific Requirement in RFP?</InputLabel>
                         <Select
                             labelId="specificrequirement-label"
@@ -132,7 +201,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                         </Select>
                     </FormControl>
 
-                    <FormControl variant="filled" sx={{ m: 1}}>
+                    <FormControl error = {formError.fixedcustom} variant="filled" sx={{ m: 1}}>
                       <InputLabel  id="fixedcustom-label">Fixed/Custom</InputLabel>
                           <Select
                               labelId="fixedcustom-label"
@@ -147,7 +216,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                           </Select>
                     </FormControl> 
 
-                    <FormControl variant="filled" sx={{ m: 1}}>
+                    <FormControl error = {formError.developmentowner} variant="filled" sx={{ m: 1}}>
                       <InputLabel  id="fixedcustom-label">Development Owner</InputLabel>
                           <Select
                               labelId="fixedcustom-label"
@@ -170,6 +239,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="productmanager" 
                       onChange={handleChange} 
                       value={formState.productmanager}
+                      error = {formError.productmanager}
                      />
 
                     <TextField 
@@ -181,6 +251,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="storypoints" 
                       onChange={handleChange} 
                       value={formState.storypoints}
+                      error = {formError.storypoints}
                     />
 
                     <TextField 
@@ -191,6 +262,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="estimateconfidencescore" 
                       onChange={handleChange} 
                       value={formState.estimateconfidencescore}
+                      error = {formError.estimateconfidencescore}
                     />
 
                     <TextField 
@@ -201,6 +273,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="estimatedby" 
                       onChange={handleChange} 
                       value={formState.estimatedby}
+                      error = {formError.estimatedby}
                     />
 
                     <TextField 
@@ -211,6 +284,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="timeline" 
                       onChange={handleChange} 
                       value={formState.timeline}
+                      error = {formError.timeline}
                      />
 
                     <TextField 
@@ -221,6 +295,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="urltoADOTicket" 
                       onChange={handleChange} 
                       value={formState.urltoADOTicket}
+                      error = {formError.urltoADOTicket}
                     /> 
                     
                     <TextField 
@@ -231,24 +306,26 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       name="inPxFRsheet" 
                       onChange={handleChange} 
                       value={formState.inPxFRsheet}
+                      error = {formError.inPxFRsheet}
                     />
 
                     <TextField 
-                    sx={{ m: 1}} 
+                    sx={{ m: 1, gridColumn: '2 / span 2'}} 
                     id="Comments/Assumptions" 
                     label="Comments/Assumptions" 
                     variant="filled" 
                     name="commentsassumptions" 
                     onChange={handleChange} 
                     value={formState.commentsassumptions}
+                    error = {formError.commentsassumptions}
                     /> 
 
           </Box>
         
         </DialogContent>
         <DialogActions>
-          <Button onClick={closeModal}>Cancel</Button>
-          <Button type="submit">Save</Button>
+          <Button onClick={closeModal} color='secondary'>Cancel</Button>
+          <Button type="submit" color='secondary' disabled={disablAddBtn}>Save</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
