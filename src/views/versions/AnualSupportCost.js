@@ -1,59 +1,41 @@
 import React, { useEffect, useState } from 'react'
-import {InputLabel,Stack, Select, FormControl, MenuItem, Box, Button, Grid } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid';
-import { randomId } from '@mui/x-data-grid-generator';
-import { Item, SumofCoulmn, currencyFormatter } from './Constfunctions';
+import { InputLabel, Stack, Select, FormControl, MenuItem, Box, Button, Grid, } from '@mui/material'
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { Item } from './Constfunctions';
+import { SumofCoulmn, currencyFormatter} from './Constfunctions';
+import './style/tablestyle.css';
 
 
 
+const AnualSupportCost = ({view}) => {
 
-
-
-
-const AnualSupportCost = () => {
-  const column = React.useMemo(() => columns.map((col) => (col.field ? { ...col, sortable: false } : col)), [columns]);
   const [type, setType] = useState('MT');
-  const [row, setRows] = useState(rows);
-  
-  // const [newrows, setNewrows] = useState([]);
+  const [row, setRows] = useState([]);
+  const [column, setColumn] = useState([]);
 
   const items = ['MT', 'X-small', 'Small', 'Medium', 'Large', 'X-large']
 
 
-  
-  const newrow = {
-    id: randomId(),
-    role: 'Total',
-    FTE: '',
-    effort: SumofCoulmn(row, 'effort'),
-    costhrrate: '',
-    cost: SumofCoulmn(row, 'cost'),
-    
+
+
+
+  useEffect(() => {
+    setRows([...rows]);
+    setColumn([...columns]);
+  }, [type]);
+
+
+  const handleTypeChange = (e) => {
+    e.preventDefault();
+    setType(e.target.value);
+
   }
 
-useEffect(()=>{
-  setRows([...row, newrow]);
-},[type]);
-
-
-
-const handleTypeChange = (e) =>{
-  e.preventDefault();
-  const lastele = row[Object.keys(row)[Object.keys(row).length - 1]].id
-  console.log(lastele)
-  
-//  const newTotal= row.map(item => (
-//    item.id === lastele ? {...item, item : {}} : item
-//  ))
-const newTotal = row.filter((item) => item.id !== lastele);
-
- setRows(newTotal);
- setType(e.target.value);
- 
-  
-
-}
-  
   return (
     <Box
       noValidate
@@ -69,8 +51,8 @@ const newTotal = row.filter((item) => item.id !== lastele);
         </Grid>
         <Grid xs={3}>
           <Item>
-            <FormControl variant="filled" sx={{ minWidth: '100%' }} >
-            <InputLabel id="demo-simple-select-filled-label">Implementation Type</InputLabel>
+            <FormControl disabled={view} variant="filled" sx={{ minWidth: '100%' }} >
+              <InputLabel id="demo-simple-select-filled-label">Implementation Type</InputLabel>
               <Select
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
@@ -93,25 +75,59 @@ const newTotal = row.filter((item) => item.id !== lastele);
           </Item>
         </Grid>
 
-        
+
 
       </Grid>
-      <Stack spacing={2} sx={{ width: '100%', mt:2 }} style={{ height: '100%' }}>
-          <Box sx={{ height: 'auto', width: '100%' }}>
-            <DataGrid
-              disableColumnMenu
-              hideFooter
-              
-              rows={row}
-              columns={column}
-              style={{ marginBottom: '20px' }}
-              
-            />
-            <Button size="1.3rem" type="button" variant="contained" color="secondary">
-              Save
-            </Button>
-          </Box>
-        </Stack>
+      <Stack spacing={2} sx={{ width: '100%', mt: 2 }} style={{ height: '100%' }}>
+        <Box sx={{ height: 'auto', width: '100%' }}>
+
+          <TableContainer>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  {column.map((col, index) => {
+                    return (
+                      <TableCell key={index} sx={{minWidth:'80px'}}>{col.field}</TableCell>
+                    )
+                  })}
+
+
+                </TableRow>
+
+              </TableHead>
+              <TableBody>
+
+                {row.map((r, index) => {
+                  return (
+                    <TableRow key={index}>
+                      <TableCell>{r.role}</TableCell>
+                      <TableCell>{r.FTE}</TableCell>
+                      <TableCell>{r.effort}</TableCell>
+                      <TableCell>{currencyFormatter(r.costhrrate)}</TableCell>
+                      <TableCell>{currencyFormatter(r.cost)}</TableCell>
+                      <TableCell>{currencyFormatter(r.cost/12)}</TableCell>
+                    </TableRow>
+                  )
+                })}
+
+                <TableRow className='row-total'>
+                  <TableCell>Total</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell>{SumofCoulmn(row, 'effort')}</TableCell>
+                  <TableCell></TableCell>
+                  <TableCell>{currencyFormatter(SumofCoulmn(row, 'cost'))}</TableCell>
+                  <TableCell>{currencyFormatter(SumofCoulmn(row, 'cost')/12)}</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+
+          <Button size="1.3rem" type="button" variant="contained" color="secondary" sx={{marginTop:'10px',visibility: view?'hidden':'visible'}}>
+            Save
+          </Button>
+        </Box>
+      </Stack>
 
 
 
@@ -125,7 +141,7 @@ export default AnualSupportCost;
 
 const rows = [
   {
-    id: 1,
+
     role: 'Digital Project Manager',
     FTE: 0.08,
     effort: 166.4,
@@ -134,7 +150,7 @@ const rows = [
   },
 
   {
-    id: 2,
+
     role: 'Digital Business Analyst ',
     FTE: 0,
     effort: 0,
@@ -143,7 +159,7 @@ const rows = [
   },
 
   {
-    id: 4,
+
     role: 'Digital Software Engineer-Onsite',
     FTE: 0.08,
     effort: 166.4,
@@ -152,7 +168,7 @@ const rows = [
   },
 
   {
-    id: 5,
+
     role: 'Digital User Experience Architect',
     FTE: 0,
     effort: 0,
@@ -161,7 +177,7 @@ const rows = [
   },
 
   {
-    id: 6,
+
     role: 'Digital Offshore Developer -Offshore',
     FTE: 0.1,
     effort: 208,
@@ -170,7 +186,7 @@ const rows = [
   },
 
   {
-    id: 7,
+
     role: 'Digital Offshore Quality Analyst - Offshore',
     FTE: 0.05,
     effort: 104,
@@ -179,56 +195,36 @@ const rows = [
 
   },
 
-  
+
 ];
 
+
+
+
 const columns = [
-  { field: 'role', headerName: 'Role', width: 300, editable: false,align: 'left',
-  headerAlign: 'left' },
+  {
+    field: 'Role',
+  },
   {
     field: 'FTE',
-    headerName: 'FTE%',
-    type: 'number',
-    editable: false,
-    align: 'left',
-    headerAlign: 'left'
+
   },
   {
-    field: 'effort',
-    headerName: 'Hrs',
-    align: 'left',
-    headerAlign: 'left',
-    editable: false,
+    field: 'Effort',
+
   },
   {
-    field: 'costhrrate',
-    headerName: 'Cost Hr Rate',
-    type: 'number',
-    align: 'left',
-    width: 130,
-    headerAlign: 'left',
-    editable: false,
-    valueFormatter: ( params ) => {
-      if (!params.value) {
-        return params.value;
-      }
-      return currencyFormatter.format(params.value);
-    },
+
+    field: 'Cost Hr Rate',
+
   },
   {
-    field: 'cost',
-    type: 'number',
-    headerName: 'Cost',
-    align: 'left',
-    headerAlign: 'left',
-    editable: false,
+    field: 'Anual Cost',
     
-    valueFormatter: ( params ) => {
-      if (!params.value) {
-        return '$';
-      }
-      return currencyFormatter.format(params.value);
-    },
+  },
+  {
+    field: 'Monthly Cost',
+    
   }
 ];
 

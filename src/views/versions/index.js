@@ -14,7 +14,7 @@ import AnualSupportCost from './AnualSupportCost';
 import DetailedScheduleTask from './DetailedScheduleTask';
 import AssumptionQuestion from './AssumptionQuestion';
 import Grid from './Grid';
-// import MainCard from 'ui-component/cards/MainCard';
+
 
 const Version = ({view}) => {
   const [value, setValue] = React.useState('Detailed Schedule & Tasks');

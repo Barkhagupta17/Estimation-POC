@@ -5,7 +5,7 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-// import FormHelperText from '@mui/material';
+import {FormHelperText} from '@mui/material';
 // project imports
 import MainCard from 'ui-component/cards/MainCard';
 import { useState } from 'react';
@@ -19,8 +19,7 @@ const Dashboard = () => {
   const [openModal, setOpenModal] = useState(false);
   const [client, setClient] = useState('');
   const [page, setPage] = useState(pages);
-
-
+  // const [disablAddBtn, setDisablAddBtn] = useState(true);
   const [estimation, setEstimation] = useState({
 
     id: '',
@@ -29,11 +28,11 @@ const Dashboard = () => {
     url: '/estimation'
 
   })
-  //   const [error, setError] = useState({
-  //     clientError: false,
-  //     estimateError:false
-  // });
-  // console.log(client, estimation);
+  const [error, setError] = useState({
+    clientError: false,
+    estimateError: false
+  });
+  console.log(error);
 
 
   // console.log(pages['children'][0].title);
@@ -47,32 +46,57 @@ const Dashboard = () => {
     setOpenModal(false);
   };
 
-  console.log(page);
 
-  const handleChange = (e) => {
+  const handleClientChange = (e) => {
+    setClient(e.target.value);
+    
+    if(e.target.value !== ''){
+      setError({ ...error, clientError: false })
+    }
+
+    // if(!error.clientError && !error.estimateError){
+    //   setDisablAddBtn(false);
+    // }
+    
+   
+  }
+
+  const handleEstimationChange = (e) => {
+    
     setEstimation({ ...estimation, id: e.target.value, title: e.target.value });
+    if(e.target.value !== ''){
+      setError({ ...error, estimateError: false })
+    }
+
+    // if(!error.clientError && !error.estimateError){
+    //   setDisablAddBtn(false);
+    // }
+  
   }
 
   const handleAddEstimation = (e) => {
     e.preventDefault();
-    console.log('clicked');
+
+
     try {
       page['children'].forEach((item, index) => {
-        
+
         if (item.title == client) {
           console.log('matched');
           console.log(item.title);
           setPage({
             ...page,
-            children: [{...page.children[index],
-              children: [estimation]}]
-          
+            children: [{
+              ...page.children[index],
+              children: [estimation]
+            }]
+
           })
 
           // setPage({
           //   ...page,
           //   children: [estimation]
-          
+
           // })
 
           handleCloseModal();
@@ -118,14 +142,22 @@ const Dashboard = () => {
             }}
           >
 
-            <FormControl variant="filled" sx={{ mt: 1, minWidth: '100%' }}>
+            <FormControl error={error.clientError} variant="filled" sx={{ mt: 1, minWidth: '100%' }}>
 
               <InputLabel id="demo-simple-select-filled-label">Client</InputLabel>
               <Select
+                
                 labelId="demo-simple-select-filled-label"
                 id="demo-simple-select-filled"
                 value={client}
-                onChange={(e) => setClient(e.target.value)}
+                onChange={handleClientChange}
+                
+                onBlur={(e) => {
+                  if (e.target.value === '') {
+                    setError({ ...error, clientError: true });
+                  }
+                }}
+
 
               >
                 {items.map((item, index) => {
@@ -136,15 +168,24 @@ const Dashboard = () => {
                 })}
 
               </Select>
+              <FormHelperText>{error.clientError ? "Invalid input" : '' }</FormHelperText>
 
               <TextField
-                error={false}
+                error={error.estimateError}
                 id="filled-error-helper-text"
                 label="Estimation Name"
                 variant="filled"
                 sx={{ mt: 1 }}
-                onChange={handleChange}
+                onChange={handleEstimationChange}
+                onBlur={(e) => {
+                  if (e.target.value === '') {
+                    setError({ ...error, estimateError: true });
+                  }
+                }}
+                // onMouseDown={}
               />
+
+              <FormHelperText>{error.estimateError ? "Invalid input" : '' }</FormHelperText>
             </FormControl>
           </Box>
 
@@ -153,7 +194,7 @@ const Dashboard = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleCloseModal} color="secondary">Cancel</Button>
-          <Button type="submit" color="secondary">Add</Button>
+          <Button type="submit" color="secondary" disabled={client.length === 0 || estimation.title.length === 0}>Add</Button>
         </DialogActions>
       </Dialog>
 

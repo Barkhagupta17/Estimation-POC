@@ -2,12 +2,10 @@ import Paper from '@mui/material/Paper';
 import { experimentalStyled as styled } from '@mui/material/styles';
 
 
-export const currencyFormatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  });
+export const currencyFormatter = (numberString) => {
+    let number = parseFloat(numberString.toFixed(2));
+    return "$ " + number.toLocaleString('USD');
+};
   
 export const SumofCoulmn = (data, field) =>{
     var sum = 0;
