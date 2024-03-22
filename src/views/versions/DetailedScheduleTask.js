@@ -4,7 +4,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Box , Button } from '@mui/material';
-// import { DataGrid } from '@mui/x-data-grid';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -201,105 +200,7 @@ export default function DetailedScheduleTask({view}) {
     <Button size="1.3rem" type="button" variant="contained" color="secondary"  sx={{marginTop:'10px',visibility: view?'hidden':'visible'}}>
           Save
         </Button>
-    {/* <Box sx={{ height: 350, width: '100%' }}>
-      <DataGrid  sx={{
-            '&.MuiDataGrid-root--densityCompact .MuiDataGrid-cell': { py: '8px' },
-            '&.MuiDataGrid-root--densityStandard .MuiDataGrid-cell': { py: '15px' },
-            '&.MuiDataGrid-root--densityComfortable .MuiDataGrid-cell': { py: '22px' },
-          }}
-          disableColumnMenu
-          hideFooter
-          getRowHeight={() => 'auto'}
-          rows={rows}
-          columns={column}
-          style={{ marginBottom: '20px', marginTop:'20px' }}
-          initialState={{
-            aggregation: {
-              model: {
-                effort: 'sum'
-              }
-            }
-          }}
-        />
-        </Box>*/}
+   
     </Box>
   );
 }
-
-// const columns = [
-//   { field: 'phase', headerName: 'Phase', maxWidth:'60'},
-//   {
-//     field: 'activityDeliverable',
-//     headerName: 'Activity Deliverable',
-//     align: 'left',
-//     headerAlign: 'left',
-//     width:200,
-//   },
-//   {
-//     field: 'type',
-//     headerName: 'Type',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'depend',
-//     headerName: 'Depend',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'owner',
-//     headerName: 'Owner',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'configure',
-//     headerName: 'Configure',
-//     width: 180,
-   
-//   },
-//   {
-//     field: 'clientComplexity',
-//     headerName: 'Client Complexity',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'baseEffortHours',
-//     headerName: 'Base Effort Hours',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'pendingFeatureBuildHours',
-//     headerName: 'Pending Feature Build Hours',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'originalEstimatedHours',
-//     headerName: 'Original Estimated Hours',
-//     // width: 180,
-//     editable: false
-//   },
-//   {
-//     field: 'comments',
-//     headerName: 'Comments',
-//     // width: 180,
-//     editable: false
-//   },
-// ];
-
-// const rows = [
-//   {
-//     id: 1,
-//     phase:'D1.1',
-//     activityDeliverable: "Set up project tracking (Epicor/NetSuite) ",
-//     type:"D",
-//     depend: "", 
-//     owner: "Pgm Mgr"
-//   },
-
-  
-// ];
