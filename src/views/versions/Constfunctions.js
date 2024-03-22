@@ -3,8 +3,13 @@ import { experimentalStyled as styled } from '@mui/material/styles';
 
 
 export const currencyFormatter = (numberString) => {
+ 
     let number = parseFloat(numberString.toFixed(2));
     return "$ " + number.toLocaleString('USD');
+};
+
+export const precentageFormatter=(number)=>{
+    return number+'%';
 };
   
 export const SumofCoulmn = (data, field) =>{

@@ -1,9 +1,11 @@
 import { useState ,useEffect} from "react";
 import EditableTable from "./EditTable";
+import EditableTableCell from './component/EditableTableCell';
 import { TableBody, TableCell, TableContainer, TableHead, TableRow,Table} from "@mui/material";
 import Box from '@mui/material/Box';
+import { currencyFormatter,precentageFormatter } from "./Constfunctions";
 
-const BuildSetupCost = () => {
+const BuildSetupCost = ({view}) => {
     
     const weeklyHour=40;
     const estimatedHour=95;
@@ -13,13 +15,13 @@ const BuildSetupCost = () => {
     const totalHour=estimatedContengency+estimatedHour;
     
     const [rows,setRows] = useState([
-        { role: "Digital  Project Manager", fte: "0.25", effort: "30", costhrrate: "91.00", cost: "2730" , comment:""},
-        { role: "Digital  Business Analyst ", fte: "0", effort: "0", costhrrate: "74.00", cost: "0" ,comment:""},
-        { role: "Digital  Solution Architect", fte: "0", effort: "0", costhrrate: "111.00", cost: "0" ,comment:""},
-        { role: "Digital  Software Engineer-Onsite", fte: "0", effort: "0", costhrrate: "100.80", cost: "0",comment:"" },
-        { role: "Digital User Experience Architect", fte: "0", effort: "0", costhrrate: "92.00", cost: "0" ,comment:""},
-        { role: "Digital Offshore Developer -Offshore", fte: "1", effort: "120", costhrrate: "42.21", cost: "5070" ,comment:""},
-        { role: "Digital Offshore Quality Analyst - Offshore", fte: "0.5", effort: "60", costhrrate: "42.21", cost: "2530" ,comment:""}
+        { role: "Digital  Project Manager", fte: 0.25, effort: 30, costhrrate: 91.00, cost: 2730 , comment:""},
+        { role: "Digital  Business Analyst ", fte: 0, effort: 0, costhrrate: 74.00, cost: 0 ,comment:""},
+        { role: "Digital  Solution Architect", fte: 0, effort: 0, costhrrate: 111.00, cost: 0 ,comment:""},
+        { role: "Digital  Software Engineer-Onsite", fte: 0, effort: 0, costhrrate: 100.80, cost: 0,comment:"" },
+        { role: "Digital User Experience Architect", fte: 0, effort: 0, costhrrate: 92.00, cost: 0 ,comment:""},
+        { role: "Digital Offshore Developer -Offshore", fte: 1, effort: 120, costhrrate: 42.21, cost: 5070 ,comment:""},
+        { role: "Digital Offshore Quality Analyst - Offshore", fte: 0.5, effort: 60, costhrrate: 42.21, cost: 2530 ,comment:""}
       ]);
       const [resource,setResource]=useState(rows[5].fte);
       const [week,setWeek]=useState(Math.round(totalHour/resource/hour));
@@ -32,8 +34,7 @@ const BuildSetupCost = () => {
         rows.map((row)=>{
         initalcost=initalcost+parseInt(row.cost);
         initaleffort=initaleffort+parseInt(row.effort);
-        // setResource(rows[5].fte);
-        // setWeek(Math.round(totalHour/resource/hour));
+       
     });
         
         settotalcost(initalcost);
@@ -52,7 +53,7 @@ const BuildSetupCost = () => {
                 }
                
               }));
-              console.log(rows);
+              
         }
         else if(columnIndex===1 && rowIndex==5){
             //change is in fte column developer offshore so resource value is change thats and week value is depended on resource
@@ -60,9 +61,7 @@ const BuildSetupCost = () => {
             setWeek(Math.round(totalHour/newValue/hour));
             const tempresource=newValue;
             const tempweek=Math.round(totalHour/tempresource/hour);
-            console.log(newValue);
-            console.log(tempresource);
-            console.log(tempweek);
+            
             const rate=[0.25,0,0,0,0,1,0.5];
             setRows( rows.map((currRow, idx) => {
                 const tempfte=newValue*rate[idx];
@@ -70,7 +69,7 @@ const BuildSetupCost = () => {
                 const tempcost=Math.round(tempeffort*currRow['costhrrate']/10)*10;
                 return ({...currRow,"effort":tempeffort,"fte":tempfte,"cost":tempcost});
             }));
-            console.log(rows);
+            
         }
         else if(columnIndex===3){
             //changes in cost hr Rate column
@@ -97,7 +96,7 @@ const BuildSetupCost = () => {
     
     return(
         <>
-          <EditableTable rows={rows} handleCellChange={handleCellChange} totalcost={totalcost} totaleffort={totaleffort} weeks={week}/>
+          <EditableTable rows={rows} handleCellChange={handleCellChange} totalcost={totalcost} totaleffort={totaleffort} weeks={week} view={view}/>
           <Box sx={{marginTop:'30px',marginBottom:'25px',display: 'flex',justifyContent: 'space-between', alignItems: 'center',gap: '40px'}}>
             <TableContainer>
                 <Table>
@@ -136,7 +135,16 @@ const BuildSetupCost = () => {
                         <TableRow>
                             <TableCell>Duration</TableCell>
                             <TableCell>{hour}</TableCell>
-                            <TableCell>{resource}</TableCell>
+                            <TableCell><EditableTableCell
+                                        view={view}
+                                        value={rows[5]["fte"]}
+                                        dollarSign="false"
+                                        type="number"
+                                        onChange={(newValue) =>
+                                            handleCellChange(newValue, 5 ,1)
+                                        }
+                                        />
+                            </TableCell>
                             <TableCell>{week}</TableCell>
                         </TableRow>
                     </TableBody>
@@ -154,7 +162,7 @@ const BuildSetupCost = () => {
             <TableBody>
                 <TableRow>
                     <TableCell>Setup Costs</TableCell>
-                    <TableCell>{totalcost}</TableCell>
+                    <TableCell>{currencyFormatter(totalcost)}</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell> Setup Schedule - in Wks</TableCell>
@@ -176,12 +184,12 @@ const BuildSetupCost = () => {
                 <TableRow>
                     <TableCell>Base Product Build/Configure</TableCell>
                     <TableCell>{estimatedHour}</TableCell>
-                    <TableCell>{estimatedHour===0?0:100}</TableCell>
+                    <TableCell>{precentageFormatter(estimatedHour===0?0:100)}</TableCell>
                 </TableRow>
                 <TableRow>
                     <TableCell>Total</TableCell>
                     <TableCell>{estimatedHour}</TableCell>
-                    <TableCell>{estimatedHour===0?0:100}</TableCell>
+                    <TableCell>{precentageFormatter(estimatedHour===0?0:100)}</TableCell>
                 </TableRow>
             </TableBody>
             </Table> 
@@ -202,13 +210,13 @@ const BuildSetupCost = () => {
                 <TableBody>
                     <TableRow>
                         <TableCell>Base Product Build/Configure</TableCell>
-                        <TableCell>{estimatedHour===0?0:totalcost}</TableCell>
-                        <TableCell>{estimatedHour===0?0:100}</TableCell>
+                        <TableCell>{currencyFormatter(estimatedHour===0?0:totalcost)}</TableCell>
+                        <TableCell>{precentageFormatter(estimatedHour===0?0:100)}</TableCell>
                     </TableRow>
                     <TableRow>
                         <TableCell>Total</TableCell>
-                        <TableCell>{estimatedHour===0?0:totalcost}</TableCell>
-                        <TableCell>{estimatedHour===0?0:100}</TableCell>
+                        <TableCell>{currencyFormatter(estimatedHour===0?0:totalcost)}</TableCell>
+                        <TableCell>{precentageFormatter(estimatedHour===0?0:100)}</TableCell>
                     </TableRow>
                 </TableBody>
             </Table>

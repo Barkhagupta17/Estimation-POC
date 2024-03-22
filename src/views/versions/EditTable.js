@@ -1,9 +1,9 @@
 import React from 'react';
 import { Table,TableHead, TableBody, TableCell, TableContainer, TableRow} from '@mui/material';
 import EditableTableCell from './component/EditableTableCell';
+import {currencyFormatter} from './Constfunctions';
 
-
-const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks }) => {
+const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks,view }) => {
   
   return (
     <TableContainer>
@@ -19,13 +19,13 @@ const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks }) =>
               <TableCell>
                 Efforts
               </TableCell>
-              <TableCell>
+              <TableCell sx={{minWidth:'100px'}}>
                 Cost Hr Rate
               </TableCell>
-              <TableCell>
+              <TableCell sx={{minWidth:'100px'}}>
                 Cost
               </TableCell>
-              <TableCell sx={{minWidth:'200px'}}>
+              <TableCell >
                Comment
               </TableCell>
             </TableRow>
@@ -36,7 +36,9 @@ const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks }) =>
               <TableCell>{row.role}</TableCell>
               <TableCell>
                     <EditableTableCell
+                      view={view}
                       value={row.fte}
+                      dollarSign="false"
                       type="number"
                       onChange={(newValue) =>
                         handleCellChange(newValue, rowIndex,1)
@@ -46,17 +48,21 @@ const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks }) =>
               <TableCell>{row.effort}</TableCell>
               <TableCell>
                     <EditableTableCell
+                      view={view}
                       type="number"
+                      dollarSign="true"
                       value={row.costhrrate}
                       onChange={(newValue) =>
                         handleCellChange(newValue, rowIndex,3)
                       }
                     />
                 </TableCell>
-              <TableCell>{row.cost}</TableCell>
+              <TableCell>{currencyFormatter(row.cost)}</TableCell>
               <TableCell>
                     <EditableTableCell
+                     view={view}
                       type="string"
+                      dollarSign="false"
                       value={row.comment}
                       onChange={(newValue) =>
                         handleCellChange(newValue, rowIndex,5)
@@ -68,7 +74,7 @@ const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks }) =>
           <TableRow>
             <TableCell colSpan={2}>Total</TableCell>
             <TableCell colSpan={2}>{totaleffort}</TableCell>
-            <TableCell colSpan={2}>{totalcost}</TableCell>
+            <TableCell colSpan={2}>{currencyFormatter(totalcost)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell colSpan={6} sx={{borderBottom: "0px solid"}}></TableCell>

@@ -1,18 +1,25 @@
 import React, { useState,useEffect } from 'react';
 import {TextField } from '@mui/material';
+import { currencyFormatter } from '../Constfunctions';
 
-
-const EditableTableCell = ({ value, onChange,type}) => {
+const EditableTableCell = ({ value, onChange,type,dollarSign,view}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [tempValue, setTempValue] = useState(value);
-   
+    const [tempView, setTempView] = useState(view);
+  //  console.log(view);
     useEffect(()=>{
       setTempValue(value);
     },[value]);
+    
+    useEffect(()=>{
+      setTempView(view);
+    },[view]);
 
     const handleDoubleClick = () => {
-      setIsEditing(true);
-    };
+      //to check wheather to have editable cell or not (view mode or edit mode)
+      tempView? setIsEditing(false): setIsEditing(true);
+      
+   };
   
     const handleChange = (e) => {
       const newValue = e.target.value;
@@ -50,7 +57,7 @@ const EditableTableCell = ({ value, onChange,type}) => {
         }}
       />
     ) : (
-      <div style={{height:"27px"}} onDoubleClick={handleDoubleClick}>{value}</div>
+      <div style={{height:"27px"}} onDoubleClick={handleDoubleClick}>{dollarSign==="true"?currencyFormatter(value):value}</div>
     );
   };
 

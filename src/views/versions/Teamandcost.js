@@ -7,9 +7,9 @@ import TabPanel from '@mui/lab/TabPanel';
 import ClientCustomCost from './ClientCustomCost';
 import BuildSetupCost from './BuildSetupCost';
 
-export default function Teamandcost() {
+export default function Teamandcost({view}) {
     const [value, setValue] = React.useState('1');
-
+    
     const handleChange = (event, newValue) => {
       setValue(newValue);
     };
@@ -24,8 +24,8 @@ export default function Teamandcost() {
               <Tab label="Client Customization Cost" value="2" />
             </TabList>
           </Box>
-          <TabPanel value="1"><BuildSetupCost/></TabPanel>
-          <TabPanel value="2"><ClientCustomCost /></TabPanel>
+          <TabPanel value="1"><BuildSetupCost view={view}/></TabPanel>
+          <TabPanel value="2"><ClientCustomCost view={view}/></TabPanel>
         </TabContext>
       </Box>
     );
