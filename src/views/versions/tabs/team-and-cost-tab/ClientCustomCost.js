@@ -2,7 +2,7 @@ import { useState ,useEffect} from "react";
 import EditableTable from "./EditTable";
 import { TableBody, TableCell, TableContainer, TableHead, TableRow,Table} from "@mui/material";
 import Box from '@mui/material/Box';
-import {currencyFormatter,precentageFormatter} from './Constfunctions';
+import {currencyFormatter,precentageFormatter} from '../Constfunctions';
 
 const ClientCustomCost = ({view}) => {
     

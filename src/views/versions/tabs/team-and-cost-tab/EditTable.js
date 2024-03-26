@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table,TableHead, TableBody, TableCell, TableContainer, TableRow} from '@mui/material';
-import EditableTableCell from './component/EditableTableCell';
-import {currencyFormatter} from './Constfunctions';
+import EditableTableCell from '../../component/EditableTableCell';
+import {currencyFormatter} from '../Constfunctions';
 
 const EditableTable = ({ rows,handleCellChange,totaleffort,totalcost,weeks,view }) => {
   

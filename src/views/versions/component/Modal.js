@@ -67,7 +67,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
   };
 
   const onBlurValidation = (e) =>{
-    if(e.target.value === '' || e.target.value === 0){
+    if(e.target.value === 0 || e.target.value === ''){
       setFormError({...formError, [e.target.name] : true});
     }
   }
@@ -158,6 +158,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                           onChange={handleChange}
                           value={formState.dependency}
                           label="Dependency? (Y/N)"
+                          onBlur={onBlurValidation}
                       >
                           <MenuItem value='Y'>Y</MenuItem>
                           <MenuItem value='N'>N</MenuItem>
@@ -173,6 +174,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                        onChange={handleChange}
                        value={formState.dependencyfeaturename}
                        error = {formError.dependencyfeaturename}
+                       onBlur={onBlurValidation}
                     />
 
                     <TextField 
@@ -184,6 +186,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.phase}
                       error = {formError.phase}
+                      onBlur={onBlurValidation}
                     />
 
                     <FormControl error = {formError.specificrequirement} variant="filled" sx={{ m: 1}}>
@@ -195,6 +198,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                             onChange={handleChange}
                             value={formState.specificrequirement}
                             label="Specific Requirement in RFP?"
+                            onBlur={onBlurValidation}
                         >
                             <MenuItem value='Y'>Y</MenuItem>
                             <MenuItem value='N'>N</MenuItem>
@@ -210,6 +214,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                               onChange={handleChange}
                               value={formState.fixedcustom}
                               label="fixedcustom-label"
+                              onBlur={onBlurValidation}
                           >
                               <MenuItem value='Fixed'>Fixed</MenuItem>
                               <MenuItem value='Custom'>Custom</MenuItem>
@@ -225,6 +230,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                               onChange={handleChange}
                               value={formState.developmentowner}
                               label="Specific Requirement in RFP? (Y/N)"
+                              onBlur={onBlurValidation}
                           >
                               <MenuItem value='Client Delivery'>Client Delivery</MenuItem>
                               <MenuItem value='Product'>Product</MenuItem>
@@ -240,6 +246,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.productmanager}
                       error = {formError.productmanager}
+                      onBlur={onBlurValidation}
                      />
 
                     <TextField 
@@ -252,6 +259,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.storypoints}
                       error = {formError.storypoints}
+                      onBlur={onBlurValidation}
                     />
 
                     <TextField 
@@ -263,6 +271,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.estimateconfidencescore}
                       error = {formError.estimateconfidencescore}
+                      onBlur={onBlurValidation}
                     />
 
                     <TextField 
@@ -274,6 +283,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.estimatedby}
                       error = {formError.estimatedby}
+                      onBlur={onBlurValidation}
                     />
 
                     <TextField 
@@ -285,6 +295,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.timeline}
                       error = {formError.timeline}
+                      onBlur={onBlurValidation}
                      />
 
                     <TextField 
@@ -296,6 +307,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.urltoADOTicket}
                       error = {formError.urltoADOTicket}
+                      onBlur={onBlurValidation}
                     /> 
                     
                     <TextField 
@@ -307,6 +319,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                       onChange={handleChange} 
                       value={formState.inPxFRsheet}
                       error = {formError.inPxFRsheet}
+                      onBlur={onBlurValidation}
                     />
 
                     <TextField 
@@ -318,6 +331,7 @@ export const Modal=({open,closeModal, onSubmit,defaultValue})=> {
                     onChange={handleChange} 
                     value={formState.commentsassumptions}
                     error = {formError.commentsassumptions}
+                    onBlur={onBlurValidation}
                     /> 
 
           </Box>

@@ -9,11 +9,11 @@ import TabContext from '@mui/lab/TabContext';
 // project imports
 import { Card } from '@mui/material';
 // import MainCard from 'ui-component/cards/MainCard';
-import ClientCustomChange from './ClientCustomChange';
-import AnualSupportCost from './AnualSupportCost';
-import DetailedScheduleTask from './DetailedScheduleTask';
-import Teamandcost from './Teamandcost';
-import AssumptionQuestion from './AssumptionQuestion';
+import ClientCustomChange from './tabs/client-custom-change-tab/ClientCustomChange';
+import AnualSupportCost from './tabs/annual-support-tab/AnualSupportCost';
+import DetailedScheduleTask from './tabs/details-schedule-task-tab/DetailedScheduleTask';
+import Teamandcost from './tabs/team-and-cost-tab/Teamandcost';
+import AssumptionQuestion from './tabs/assumption-and-question-tab/AssumptionQuestion';
 
 // import MainCard from 'ui-component/cards/MainCard';
 

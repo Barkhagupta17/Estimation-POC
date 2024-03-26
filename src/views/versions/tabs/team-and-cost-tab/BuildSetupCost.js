@@ -1,9 +1,9 @@
 import { useState ,useEffect} from "react";
 import EditableTable from "./EditTable";
-import EditableTableCell from './component/EditableTableCell';
+import EditableTableCell from '../../component/EditableTableCell';
 import { TableBody, TableCell, TableContainer, TableHead, TableRow,Table} from "@mui/material";
 import Box from '@mui/material/Box';
-import { currencyFormatter,precentageFormatter } from "./Constfunctions";
+import { currencyFormatter,precentageFormatter } from "../Constfunctions";
 
 const BuildSetupCost = ({view}) => {
     

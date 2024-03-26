@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from "react";
 import { Button } from '@mui/material';
-import { TableComponent } from "./component/TableComponent";
-import {AssumptionQuestionModal} from "./component/AssumptionQuestionModal";
+import { TableComponent } from "../../component/TableComponent";
+import {AssumptionQuestionModal} from "../../component/AssumptionQuestionModal";
 import { Box } from '@mui/material';
 
 function Question({view}) {

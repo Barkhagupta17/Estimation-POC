@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState,useEffect } from "react";
 import { Button } from '@mui/material';
-import { ClientTable } from "./component/ClientTable";
-import {Modal} from "./component/Modal";
+import { ClientTable } from "../../component/ClientTable";
+import {Modal} from "../../component/Modal";
 import { Box } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 // import { number } from 'prop-types';
@@ -39,6 +39,8 @@ function ClientCustomChange({view}) {
     setProductValue(initalproduct);
     setclientDeliveryValue(initaldelivery);
     }, [rows]);
+
+    
 
   const [rowToEdit, setRowToEdit] = useState(null);
   const[productRoadmap,setProductValue]=useState(0);

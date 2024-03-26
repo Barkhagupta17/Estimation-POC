@@ -6,9 +6,9 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import { Item } from './Constfunctions';
-import { SumofCoulmn, currencyFormatter} from './Constfunctions';
-import './style/tablestyle.css';
+import { Item } from '../Constfunctions';
+import { SumofCoulmn, currencyFormatter} from '../Constfunctions';
+import '../../style/tablestyle.css';
 
 
 

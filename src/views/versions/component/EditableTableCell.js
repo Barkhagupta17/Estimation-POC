@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import {TextField } from '@mui/material';
-import { currencyFormatter } from '../Constfunctions';
+import { currencyFormatter } from '../tabs/Constfunctions';
 
 const EditableTableCell = ({ value, onChange,type,dollarSign,view}) => {
     const [isEditing, setIsEditing] = useState(false);
