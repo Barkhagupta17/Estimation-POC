@@ -18,17 +18,17 @@ import AssumptionQuestion from './tabs/assumption-and-question-tab/AssumptionQue
 // import MainCard from 'ui-component/cards/MainCard';
 
 const Version = ({view}) => {
-  const [value, setValue] = React.useState('Detailed Schedule & Tasks');
+  const [tab, setTab] = React.useState('Detailed Schedule & Tasks');
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setTab(newValue);
   };
   return (
     <Card>
         <Box sx={{ width: '100%', padding: '20px' }}>
-          <TabContext value={value}>
+          <TabContext value={tab}>
             <Tabs
-              value={value}
+              value={tab}
               onChange={handleChange}
               variant="scrollable"
               scrollButtons="auto"
@@ -43,21 +43,22 @@ const Version = ({view}) => {
               <Tab value="Annual-Support-Cost" label="Annual Support Cost" />
               <Tab value='Assumptions-&-Questions' label="Assumptions & Questions"></Tab>
             </Tabs>
-            <TabPanel value="Detailed Schedule & Tasks"><DetailedScheduleTask view={view}/></TabPanel>
+
+            <TabPanel value="Detailed Schedule & Tasks"><DetailedScheduleTask view={view} setTab={setTab}/></TabPanel>
             <TabPanel value="Client-Custom-Change" style={{ height: '450' }}>
-              <ClientCustomChange view={view}/>
+              <ClientCustomChange view={view} setTab={setTab} />
             </TabPanel>
             <TabPanel value="Team-&-Cost">
-              <Teamandcost view={view}/>
+              <Teamandcost view={view} setTab={setTab} />
               
             </TabPanel>
 
             <TabPanel value="Annual-Support-Cost">
-              <AnualSupportCost view={view}/>
+              <AnualSupportCost view={view} setTab={setTab} />
             </TabPanel>
 
             <TabPanel value="Assumptions-&-Questions">
-              <AssumptionQuestion view={view}/>
+              <AssumptionQuestion view={view} setTab={setTab} />
             </TabPanel>
           </TabContext>
         </Box>

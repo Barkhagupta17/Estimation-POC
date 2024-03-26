@@ -1,51 +1,55 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { Box , Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-function createData(phase, activityDeliverable, type, depend, owner,configure,clientComplexity,baseEffortHours,pendingFeatureBuildHours,originalEstimatedHours,comments) {
-    return { phase, activityDeliverable, type, depend, owner,configure,clientComplexity,baseEffortHours,pendingFeatureBuildHours,originalEstimatedHours,comments };
-  }
-  
-  const rows = [
-    createData('D1.1', "Set up project tracking (Epicor/NetSuite) ","D", "", "Pgm Mgr"),
-    createData('D1.2',"Create shared project area and project documentation folders", "D", "", "Pgm Mgr"),
-    createData('D1.3', "Draft initial Configuration Checklist", "D", "", "Pgm Mgr", "", "", "", "", "","Pgm Mgr drafts prior to kickoff, based on presale info, for review by team (and IT BA in particular)"),
-    
-  ];
+function createData(phase, activityDeliverable, type, depend, owner, configure, clientComplexity, baseEffortHours, pendingFeatureBuildHours, originalEstimatedHours, comments) {
+  return { phase, activityDeliverable, type, depend, owner, configure, clientComplexity, baseEffortHours, pendingFeatureBuildHours, originalEstimatedHours, comments };
+}
 
-export default function DetailedScheduleTask({view}) {
-  console.log(view);
-  console.log(view?'hidden':'visible');
-    const [formState, setFormState] = useState(
-       {
-          instanceType: 'NA',
-          programType: 'NA',
-          programFeature: 'NA',
-          enableGamification:'No',
-          enableLearnEarn:'No',
-          enableSSO:'No',
-          enableSSNVault:'No',
-          dataMigration:'No',
-          
-        }
-      );
+const rows = [
+  createData('D1.1', "Set up project tracking (Epicor/NetSuite) ", "D", "", "Pgm Mgr"),
+  createData('D1.2', "Create shared project area and project documentation folders", "D", "", "Pgm Mgr"),
+  createData('D1.3', "Draft initial Configuration Checklist", "D", "", "Pgm Mgr", "", "", "", "", "", "Pgm Mgr drafts prior to kickoff, based on presale info, for review by team (and IT BA in particular)"),
+
+];
+
+export default function DetailedScheduleTask({ view, setTab }) {
+  // console.log(view?'hidden':'visible');
+  const [formState, setFormState] = useState(
+    {
+      instanceType: 'NA',
+      programType: 'NA',
+      programFeature: 'NA',
+      enableGamification: 'No',
+      enableLearnEarn: 'No',
+      enableSSO: 'No',
+      enableSSNVault: 'No',
+      dataMigration: 'No',
+
+    }
+  );
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
- 
- 
+
+  const handleSave = (e) => {
+    e.preventDefault();
+    setTab('Client-Custom-Change');
+  }
+
+
   return (
     <Box>
-        <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
+      <FormControl disabled={view} variant="filled" sx={{ m: 1, minWidth: 260 }}>
         <InputLabel id="instance-type-label">Instance Type</InputLabel>
         <Select
           labelId="instance-type-label"
@@ -53,7 +57,7 @@ export default function DetailedScheduleTask({view}) {
           name="instanceType"
           value={formState.instanceType}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Multi-tenant'}>Multi-tenant</MenuItem>
           <MenuItem value={'Stand-Alone'}>Stand-Alone</MenuItem>
           <MenuItem value={'NA'}>NA</MenuItem>
@@ -67,7 +71,7 @@ export default function DetailedScheduleTask({view}) {
           name="programType"
           value={formState.programType}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Dollars'}>Dollars</MenuItem>
           <MenuItem value={'Points'}>Points</MenuItem>
           <MenuItem value={'NA'}>NA</MenuItem>
@@ -81,7 +85,7 @@ export default function DetailedScheduleTask({view}) {
           name="programFeature"
           value={formState.programFeature}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Sales Incentive'}>Sales Incentive</MenuItem>
           <MenuItem value={'Recognition'}>Recognition</MenuItem>
           <MenuItem value={'Both'}>Both</MenuItem>
@@ -96,7 +100,7 @@ export default function DetailedScheduleTask({view}) {
           name="enableGamification"
           value={formState.enableGamification}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Yes'}>Yes</MenuItem>
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
@@ -109,7 +113,7 @@ export default function DetailedScheduleTask({view}) {
           name="enableLearnEarn"
           value={formState.enableLearnEarn}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Yes'}>Yes</MenuItem>
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
@@ -122,7 +126,7 @@ export default function DetailedScheduleTask({view}) {
           name="enableSSO"
           value={formState.enableSSO}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Yes'}>Yes</MenuItem>
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
@@ -135,7 +139,7 @@ export default function DetailedScheduleTask({view}) {
           name="enableSSNVault"
           value={formState.enableSSNVault}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Yes'}>Yes</MenuItem>
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
@@ -148,59 +152,59 @@ export default function DetailedScheduleTask({view}) {
           name="dataMigration"
           value={formState.dataMigration}
           onChange={handleChange}
-        >          
+        >
           <MenuItem value={'Yes'}>Yes</MenuItem>
           <MenuItem value={'No'}>No</MenuItem>
         </Select>
       </FormControl>
 
-      <TableContainer sx={{marginTop:'20px'}} >
-      <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead >
-          <TableRow>
-            
-            <TableCell >Phase</TableCell>
-            <TableCell sx={{minWidth: 340 }} >Activity/Deliverable</TableCell>
-            <TableCell >Type</TableCell>
-            <TableCell >Depend</TableCell>
-            <TableCell >Owner</TableCell>
-            <TableCell >Configure/ Build Work Type</TableCell>
-            <TableCell >Client Complexity</TableCell>
-            <TableCell >Base Effort Hours</TableCell>
-            <TableCell >Pending Feature Build Hours</TableCell>
-            <TableCell >Original Estimated Hours</TableCell>
-            <TableCell  sx={{ minWidth: 300}}>Comments</TableCell>
-           
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.idx}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              
-              <TableCell>{row.phase}</TableCell>
-              <TableCell>{row.activityDeliverable}</TableCell>
-              <TableCell>{row.type}</TableCell>
-              <TableCell>{row.depend}</TableCell>
-              <TableCell>{row.owner}</TableCell>
-              <TableCell>{row.configure}</TableCell>
-              <TableCell>{row.clientComplexity}</TableCell>
-              <TableCell>{row.baseEffortHours}</TableCell>
-              <TableCell>{row.pendingFeatureBuildHours}</TableCell>
-              <TableCell>{row.originalEstimatedHours}</TableCell>
-              <TableCell>{row.comments}</TableCell>
-             
+      <TableContainer sx={{ marginTop: '20px' }} >
+        <Table stickyHeader sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead >
+            <TableRow>
+
+              <TableCell >Phase</TableCell>
+              <TableCell sx={{ minWidth: 340 }} >Activity/Deliverable</TableCell>
+              <TableCell >Type</TableCell>
+              <TableCell >Depend</TableCell>
+              <TableCell >Owner</TableCell>
+              <TableCell >Configure/ Build Work Type</TableCell>
+              <TableCell >Client Complexity</TableCell>
+              <TableCell >Base Effort Hours</TableCell>
+              <TableCell >Pending Feature Build Hours</TableCell>
+              <TableCell >Original Estimated Hours</TableCell>
+              <TableCell sx={{ minWidth: 300 }}>Comments</TableCell>
+
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    <Button size="1.3rem" type="button" variant="contained" color="secondary"  sx={{marginTop:'10px',visibility: view?'hidden':'visible'}}>
-          Save
-        </Button>
-   
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow
+                key={row.idx}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+
+                <TableCell>{row.phase}</TableCell>
+                <TableCell>{row.activityDeliverable}</TableCell>
+                <TableCell>{row.type}</TableCell>
+                <TableCell>{row.depend}</TableCell>
+                <TableCell>{row.owner}</TableCell>
+                <TableCell>{row.configure}</TableCell>
+                <TableCell>{row.clientComplexity}</TableCell>
+                <TableCell>{row.baseEffortHours}</TableCell>
+                <TableCell>{row.pendingFeatureBuildHours}</TableCell>
+                <TableCell>{row.originalEstimatedHours}</TableCell>
+                <TableCell>{row.comments}</TableCell>
+
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <Button size="1.3rem" type="button" variant="contained" color="secondary" sx={{ marginTop: '10px', visibility: view ? 'hidden' : 'visible' }} onClick={handleSave}>
+        Save
+      </Button>
+
     </Box>
   );
 }

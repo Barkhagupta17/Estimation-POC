@@ -2,12 +2,12 @@
 import pages from './pages';
 // import utilities from './utilities';
 import home from './Home';
-import other from './other';
+// import other from './other';
 
 // ==============================|| MENU ITEMS ||============================== //
 
 const menuItems = {
-  items: [home, pages, other]
+  items: [home, pages]
   // items: [dashboard, pages, utilities, other]
 };
 

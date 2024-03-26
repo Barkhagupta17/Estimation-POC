@@ -12,7 +12,7 @@ import '../../style/tablestyle.css';
 
 
 
-const AnualSupportCost = ({view}) => {
+const AnualSupportCost = ({view,setTab}) => {
 
   const [type, setType] = useState('MT');
   const [row, setRows] = useState([]);
@@ -34,6 +34,11 @@ const AnualSupportCost = ({view}) => {
     e.preventDefault();
     setType(e.target.value);
 
+  }
+
+  const handleSave = (e) =>{
+    e.preventDefault();
+    setTab('Assumptions-&-Questions');
   }
 
   return (
@@ -123,7 +128,7 @@ const AnualSupportCost = ({view}) => {
           </TableContainer>
 
 
-          <Button size="1.3rem" type="button" variant="contained" color="secondary" sx={{marginTop:'10px',visibility: view?'hidden':'visible'}}>
+          <Button size="1.3rem" type="button" variant="contained" color="secondary" onClick={handleSave} sx={{marginTop:'10px',visibility: view?'hidden':'visible'}}>
             Save
           </Button>
         </Box>
