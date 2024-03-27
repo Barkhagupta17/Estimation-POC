@@ -15,34 +15,24 @@ import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import { FormControl, TextField, Dialog, DialogActions, DialogTitle, DialogContent } from '@mui/material';
 import { formatDate, lengthOfObject } from 'views/versions/tabs/Constfunctions';
 
 
 const data = [
-  // { id :1, sr: 1.3,name: 'Toyota programs estimation V3', createdBy:'Ajay', dateTime:'03-12-2024 / 12:23', recomment:'This is V3', status:'Draft'},
-  { id :1, sr: 1.2, name: 'Toyota programs estimation V2', createdBy: 'Barkha', dateTime: '02-12-2024 / 10:00', recomment: 'This is V2', status: 'Published' },
-  { id :2, sr: 1.1, name: 'Toyota programs estimation V1', createdBy: 'Sandip', dateTime: '01-12-2024 / 14:12', recomment: 'This is V1', status: 'Published' }
+  { id :3, sr: 1.3,name: 'Toyota programs estimation V3', createdBy:'Ajay', dateTime:'03-12-2024 / 12:23', recomment:'This is V3', status:'Draft'},
+  { id :2, sr: 1.2, name: 'Toyota programs estimation V2', createdBy: 'Barkha', dateTime: '02-12-2024 / 10:00', recomment: 'This is V2', status: 'Published' },
+  { id :1, sr: 1.1, name: 'Toyota programs estimation V1', createdBy: 'Sandip', dateTime: '01-12-2024 / 14:12', recomment: 'This is V1', status: 'Published' }
 ];
 
 const Estimation = () => {
   const [rows, setRows] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [versionName, setVersionName] = useState('');
-  const [comment, setComment] = useState('');
-  const [versionError, setVersionError] = useState(false);
-
-
-  const handleVersionChange = (e) => {
-    setVersionName(e.target.value);
-  }
 
   const handleCreateVersion = (e) => {
     e.preventDefault();
     const currentDate = new Date();
     const Id = lengthOfObject(rows) + 1;
-    setRows([{id: Id, sr: parseFloat('1.' + Id), name: versionName, createdBy: 'Barkha', dateTime: formatDate(currentDate), recomment: comment, status: 'Draft' }, ...rows])
-    setOpenModal(false);
+    setRows([{id: Id, sr: parseFloat('1.' + Id), name: 'Toyota programs estimation V'+ Id, createdBy: 'Barkha', dateTime: formatDate(currentDate), recomment: '', status: 'Draft' }, ...rows])
+
   }
 
   const handleDeleteVersion = (idk) =>{
@@ -51,12 +41,6 @@ const Estimation = () => {
     setRows(updatedRow);
   }
 
-  const handleCloseModal = () => {
-    setVersionName('');
-    setOpenModal(false);
-    setVersionError(false);
-    setComment('');
-   }
 
   const disbleVersionBtn = () => {
     var result = false;
@@ -78,68 +62,11 @@ const Estimation = () => {
   return (
     <Card sx={{ p: 2 }}>
       <Stack direction="row" alignItems="center" justifyContent="right" spacing={1} sx={{ mb: 2 }}>
-        <Button size="1.3rem" type="button" variant="contained" color="secondary" onClick={()=>setOpenModal(true)} disabled={disbleVersionBtn()}>
+        <Button size="1.3rem" type="button" variant="contained" color="secondary" onClick={handleCreateVersion} disabled={disbleVersionBtn()}>
           Create Version
         </Button>
       </Stack>
 
-      <Dialog
-        open={openModal}
-        onClose={handleCloseModal}
-        PaperProps={{
-          component: 'form',
-          onSubmit: handleCreateVersion,
-        }}
-      >
-        <DialogTitle sx={{ fontSize: '1.5rem' }}>Create New Version</DialogTitle>
-        <DialogContent>
-
-
-          <Box
-            noValidate
-            component="form"
-            sx={{
-              width: 400
-
-            }}
-          >
-
-            <FormControl variant="filled" sx={{ mt: 1, minWidth: '100%' }}>
-
-              <TextField
-                error={versionError}
-                id="filled-error-helper-text"
-                label="Version Name"
-                variant="filled"
-                sx={{ mt: 1 }}
-                onChange={handleVersionChange}
-                onBlur={(e) => {
-                  if (e.target.value === '') {
-                    setVersionError(true);
-                  }
-                }}
-
-              />
-              
-              <TextField
-                id="filled-error-helper-text"
-                label="Comments"
-                variant="filled"
-                sx={{ mt: 3 }}
-                onChange={(e)=>setComment(e.target.value)}
-
-              />             
-            </FormControl>
-          </Box>
-
-
-
-        </DialogContent>
-        <DialogActions>
-          <Button color="secondary" onClick={handleCloseModal}>Cancel</Button>
-          <Button type="submit" color="secondary" disabled={versionName === ''}>Add</Button>
-        </DialogActions>
-      </Dialog>
 
       <TableContainer>
         <Table aria-label="simple table" className="estimation-table">
